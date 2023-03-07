@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b478f55d.css",
+    "main.js": "/static/js/main.6e87164c.js",
+    "static/js/787.1e2b66a9.chunk.js": "/static/js/787.1e2b66a9.chunk.js",
+    "static/media/kiosk.jpg": "/static/media/kiosk.c210b7e5621fe4a28860.jpg",
+    "static/media/company.jpg": "/static/media/company.8afe502ab76d126b9f15.jpg",
+    "static/media/product.png": "/static/media/product.b5b67fddb5520e6b0bce.png",
+    "static/media/cscenter.png": "/static/media/cscenter.83bce319dad31aa56a0e.png",
+    "static/media/technology.png": "/static/media/technology.b440a35f38cf9002ed2b.png",
+    "static/media/inquiry.png": "/static/media/inquiry.7bc3b46b72e89088da83.png",
+    "static/media/patent.png": "/static/media/patent.d696c87fba5a1a4929f7.png",
+    "static/media/auto.jpg": "/static/media/auto.8a04867f7faf6a976543.jpg",
+    "static/media/certificate.png": "/static/media/certificate.9605306cb17af8ead09a.png",
+    "static/media/drawing.png": "/static/media/drawing.8a10b3d07a8dd33443fc.png",
+    "static/media/test1.png": "/static/media/test1.8b747ec84bb440a4270a.png",
+    "static/media/test2.png": "/static/media/test2.f8d22759fd33aa607625.png",
+    "static/media/home.jpg": "/static/media/home.34e6428a89af04c7ff2d.jpg",
+    "static/media/inquiryinfo.png": "/static/media/inquiryinfo.c0feeaa5bc84ec9ca5e9.png",
+    "static/media/container.jpg": "/static/media/container.4ecc4c0bd3fec4a259ff.jpg",
+    "static/media/train.jpg": "/static/media/train.c2c4b979739d6acf70b2.jpg",
+    "static/media/ceoIntroEng.png": "/static/media/ceoIntroEng.d886d0337cec955fd7aa.png",
+    "static/media/inspect.png": "/static/media/inspect.13c1e69026ae31768acb.png",
+    "static/media/logo.png": "/static/media/logo.99aceb31ca28995b41a4.png",
+    "static/media/organization.png": "/static/media/organization.5cf1fd9d748bc9987f94.png",
+    "static/media/ceoIntro.png": "/static/media/ceoIntro.f971dabd6dd33014effe.png",
+    "static/media/organizationEng.jpg": "/static/media/organizationEng.91ad17244f503eb613c4.jpg",
+    "static/media/key.png": "/static/media/key.276781db996449e215df.png",
+    "static/media/keyworld.png": "/static/media/keyworld.755af39ef022d23cea6f.png",
+    "index.html": "/index.html",
+    "main.b478f55d.css.map": "/static/css/main.b478f55d.css.map",
+    "main.6e87164c.js.map": "/static/js/main.6e87164c.js.map",
+    "787.1e2b66a9.chunk.js.map": "/static/js/787.1e2b66a9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b478f55d.css",
+    "static/js/main.6e87164c.js"
+  ]
+}

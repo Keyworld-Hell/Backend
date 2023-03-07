@@ -1,0 +1,12 @@
+package com.keyworld.projectboard.repository;
+
+import com.keyworld.projectboard.domain.CircularLock;
+import com.keyworld.projectboard.domain.CircularLockEng;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface CircularLockRepository extends
+        JpaRepository<CircularLock, Long> {
+    List<CircularLock> findByTitleContainingIgnoreCase(String title);
+}
