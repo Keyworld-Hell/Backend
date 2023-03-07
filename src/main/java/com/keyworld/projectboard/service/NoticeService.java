@@ -1,7 +1,7 @@
 package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Notice;
-import com.keyworld.projectboard.dto.NoticeDto;
+import com.keyworld.projectboard.dto.NoticeDTO;
 import com.keyworld.projectboard.repository.NoticeRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,18 +19,18 @@ public class NoticeService {
     private final NoticeRepository noticeRepository;
 
     @Transactional(readOnly = true)
-    public NoticeDto.Response searchById(Long id){
+    public NoticeDTO.Response searchById(Long id){
         Notice entity = noticeRepository.findById(id).orElseThrow(()
         ->new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
 
-        return new NoticeDto.Response(entity);
+        return new NoticeDTO.Response(entity);
     }
 
     @Transactional(readOnly = true)
-    public List<NoticeDto.ListResponse> searchAllDesc() {
+    public List<NoticeDTO.ListResponse> searchAllDesc() {
 
         return noticeRepository.findAllByOrderByIdDesc().stream()
-                .map(NoticeDto.ListResponse::new)
+                .map(NoticeDTO.ListResponse::new)
                 .collect(Collectors.toList());
     }
 
