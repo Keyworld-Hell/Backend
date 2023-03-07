@@ -2,17 +2,22 @@ package com.keyworld.projectboard.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class CamLockDTO {
+public class LockDTO {
+    private Boolean language;
+    private Long number;
     private String title;
     private String material;
     private String surface;
     private String purpose;
     private String feature;
-    private MultipartFile cam;
-    private MultipartFile dwg;
-    private MultipartFile dwgDown;
-    private MultipartFile stepDown;
-    private MultipartFile pdfDown;
+
+    public Boolean getLanguage() { return language; }
+
+    public void setLanguage(Boolean language){ this.language = language; }
+
+    public Long getNumber() { return number; }
+
+    public void setNumber(Long number) { this.number = number; }
 
     public String getTitle() {
         return title;
@@ -54,43 +59,4 @@ public class CamLockDTO {
         this.feature = feature;
     }
 
-    public MultipartFile getCam() {
-        return cam;
-    }
-
-    public void setCam(MultipartFile cam) {
-        this.cam = cam;
-    }
-
-    public MultipartFile getDwg() {
-        return dwg;
-    }
-
-    public void setDwg(MultipartFile dwg) {
-        this.dwg = dwg;
-    }
-
-    public MultipartFile getDwgDown() {
-        return dwgDown;
-    }
-
-    public void setDwgDown(MultipartFile dwgDown) {
-        this.dwgDown = dwgDown;
-    }
-
-    public MultipartFile getStepDown() {
-        return stepDown;
-    }
-
-    public void setStepDown(MultipartFile stepDown) {
-        this.stepDown = stepDown;
-    }
-
-    public MultipartFile getPdfDown() {
-        return pdfDown;
-    }
-
-    public void setPdfDown(MultipartFile pdfDown) {
-        this.pdfDown = pdfDown;
-    }
 }
