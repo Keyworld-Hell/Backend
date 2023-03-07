@@ -32,3 +32,8 @@ Community에서도 열리긴 할텐데 안되는 기능들 있을지는 몰?루
 * /build/resources/main 에 html이랑 css directory 갈아엎고 react작업 저기서 하면 되는듯함
 * login, kakaoAuth 만들어놓긴 했는데 필요없대서 뺄예정 -> 완료
 * hashtag 검색 기능도 해놓긴 했는데 필요없어보이면 뺄예정 -> 완료
+
+
+##
+
+1: camlock 2: circularlock 3: customlock 4: digitallock 5: dimplelock 6: disklock 7: handle 8: hinge 9: npartlock 10: saunalock 11: special 12: steellock 13: switchlock
