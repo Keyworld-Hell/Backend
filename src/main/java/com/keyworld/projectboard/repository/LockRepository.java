@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface LockRepository extends
         JpaRepository<com.keyworld.projectboard.domain.Lock, Long> {
-    List<Lock> findByTitleContainingIgnoreCase(String title);
+    List<Lock> findByLanguageAndNumberAndTitleContainingIgnoreCase(Boolean Language, Long number, String title);
+
+    List<Lock> findByLanguageAndNumber(Boolean language, Long number);
+
+    Lock findByLanguageAndNumberAndId(Boolean language, Long number, Long Id);
 }
