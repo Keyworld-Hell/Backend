@@ -36,7 +36,6 @@ public class Certification extends BaseTime {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="certification_id")
     private Long id;
-
     @Column(nullable = false)
     private String title;
 
