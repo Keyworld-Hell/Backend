@@ -15,40 +15,35 @@ import java.util.List;
 public class LockController {
     @Autowired
     private LockService service;
-    @GetMapping("/products/camlock")
-    public List<Lock> getAll() {
-        return service.getAll();
+    @GetMapping("/{language}/products/{number}")
+    public List<Lock> getAll(@PathVariable Boolean language, @PathVariable Long number) {
+        return service.getAll(language, number);
     }
 
-    @GetMapping("/products/camlock/{id}")
-    public Lock getById(@PathVariable Long id) {
-        return service.getById(id);
-    }
-    @GetMapping("/products/camlock/search/{title}")
-    public List<Lock> getCamLocksByTitle(@RequestParam String title) {
-        return service.findLocksByTitle(title);
+    @GetMapping("/{language}/products/{number}/{id}")
+    public Lock getById(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
+        return service.getByLanguageAndNumberAndId(language, number, id);
     }
 
-    @GetMapping("/admin/products/camlock/search/{title}")
-    public List<Lock> getCamLocksByTitleAdmin(@PathVariable String title) {
-        return service.findLocksByTitle(title);
+    @GetMapping("/{language}/products/{number}/search/{title}")
+    public List<Lock> getLockByTitle(@PathVariable Boolean language, @PathVariable Long number, @PathVariable String title) {
+        return service.findLocksByTitle(language, number, title);
     }
 
-
-    @PostMapping("/admin/products/camlock/upload")
+    @PostMapping("/admin/products/upload")
     public ResponseEntity<String> uploadFile(@ModelAttribute LockDTO lockDTO) throws IOException {
         service.save(lockDTO);
         return ResponseEntity.ok("File uploaded successfully");
     }
 
-    @PutMapping("/admin/products/camlock/update/{id}")
-    public Lock update(@PathVariable Long id, @ModelAttribute LockDTO dto) throws IOException {
-        return service.update(id, dto);
+    @PutMapping("{language}/admin/products/update/{number}/{id}")
+    public Lock update(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id, @ModelAttribute LockDTO dto) throws IOException {
+        return service.update(language, number, id, dto);
     }
 
-    @DeleteMapping("/admin/products/camlock/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+    @DeleteMapping("{language}/admin/products/delete/{number}/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
+        service.delete(language, number, id);
         return ResponseEntity.noContent().build();
     }
 }
