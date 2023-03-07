@@ -1,8 +1,6 @@
 package com.keyworld.projectboard.controller;
 
-import com.keyworld.projectboard.domain.CamLock;
 import com.keyworld.projectboard.dto.CamLockDTO;
-import com.keyworld.projectboard.repository.CamLockRepository;
 import com.keyworld.projectboard.service.CamLockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;

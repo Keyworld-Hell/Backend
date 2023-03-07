@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.keyworld.projectboard.domain.CamLock;
 import com.keyworld.projectboard.repository.CamLockRepository;
 
 @Service

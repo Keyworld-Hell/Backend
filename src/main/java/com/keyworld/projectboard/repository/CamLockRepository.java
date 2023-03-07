@@ -1,6 +1,5 @@
 package com.keyworld.projectboard.repository;
 
-import com.keyworld.projectboard.domain.CamLock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
