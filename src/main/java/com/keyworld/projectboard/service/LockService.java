@@ -17,18 +17,17 @@ public class LockService {
     @Autowired
     private LockRepository repository;
 
-    public List<Lock> getAll() {
-        return repository.findAll();
+    public List<Lock> getAll(Boolean language, Long number) {
+        return repository.findByLanguageAndNumber(language, number);
     }
 
-    public List<Lock> findLocksByTitle(String title) {
-        return repository.findByTitleContainingIgnoreCase(title);
+    public List<Lock> findLocksByTitle(Boolean language, Long number, String title) {
+        return repository.findByLanguageAndNumberAndTitleContainingIgnoreCase(language, number, title);
     }
 
 
-    public Lock getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException());
+    public Lock getByLanguageAndNumberAndId(Boolean language, Long number, Long id) {
+        return repository.findByLanguageAndNumberAndId(language, number, id)
     }
 
 
@@ -43,8 +42,8 @@ public class LockService {
     }
 
 
-    public Lock update(Long id, LockDTO dto) throws IOException {
-        Lock entity = getById(id);
+    public Lock update(Boolean language, Long number, Long id, LockDTO dto) throws IOException {
+        Lock entity = getByLanguageAndNumberAndId(language, number, id);
         entity.setLanguage(dto.getLanguage());
         entity.setNumber(dto.getNumber());
         entity.setTitle(dto.getTitle());
@@ -56,8 +55,8 @@ public class LockService {
     }
 
 
-    public void delete(Long id) {
-        Lock entity = getById(id);
+    public void delete(Boolean language, Long number, Long id) {
+        Lock entity = getByLanguageAndNumberAndId(language, number, id);
         repository.delete(entity);
     }
 
