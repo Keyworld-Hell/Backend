@@ -27,37 +27,18 @@ public class ArticleComment extends AuditingFields {
     @JoinColumn(name = "article_id")
     private Article article;
 
-
-    @Setter
-    @Column(updatable = false)
-    private Long parentCommentId; // 부모 댓글 ID
-
-
-    @ToString.Exclude
-    @OrderBy("createdAt ASC")
-    @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
-    private Set<ArticleComment> childComments = new LinkedHashSet<>();
-
-    @Setter @Column(nullable = false) private String author;
     @Setter @Column(nullable = false, length = 500) private String content; // 본문
 
 
     protected ArticleComment() {}
 
-    private ArticleComment(Article article, Long parentCommentId, String author, String content) {
+    private ArticleComment(Article article, String content) {
         this.article = article;
-        this.parentCommentId = parentCommentId;
-        this.author = author;
         this.content = content;
     }
 
-    public static ArticleComment of(Article article, String author, String content) {
-        return new ArticleComment(article, null,author,  content);
-    }
-
-    public void addChildComment(ArticleComment child) {
-        child.setParentCommentId(this.getId());
-        this.getChildComments().add(child);
+    public static ArticleComment of(Article article, String content) {
+        return new ArticleComment(article, content);
     }
 
     @Override
