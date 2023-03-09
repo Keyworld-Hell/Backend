@@ -9,37 +9,21 @@ import java.util.TreeSet;
 
 public record ArticleCommentResponse(
         Long id,
-        String author,
         String content,
-        LocalDateTime createdAt,
-        Long parentCommentId,
-        Set<ArticleCommentResponse> childComments
+        LocalDateTime createdAt
 ) {
 
-    public static ArticleCommentResponse of(Long id, String author, String content, LocalDateTime createdAt) {
-        return ArticleCommentResponse.of(id, author, content, createdAt, null);
+    public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt) {
+        return new ArticleCommentResponse(id, content, createdAt);
     }
 
-    public static ArticleCommentResponse of(Long id, String author, String content, LocalDateTime createdAt, Long parentCommentId) {
-        Comparator<ArticleCommentResponse> childCommentComparator = Comparator
-                .comparing(ArticleCommentResponse::createdAt)
-                .thenComparingLong(ArticleCommentResponse::id);
-        return new ArticleCommentResponse(id, author, content, createdAt, parentCommentId, new TreeSet<>(childCommentComparator));
-    }
 
     public static ArticleCommentResponse from(ArticleCommentDto dto) {
-
         return ArticleCommentResponse.of(
                 dto.id(),
-                dto.author(),
                 dto.content(),
-                dto.createdAt(),
-                dto.parentCommentId()
+                dto.createdAt()
         );
-    }
-
-    public boolean hasParentComment() {
-        return parentCommentId != null;
     }
 
 }
