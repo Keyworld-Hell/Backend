@@ -32,7 +32,6 @@ public class ArticleService {
             case AUTHOR -> articleRepository.findByAuthorContaining(searchKeyword, pageable).map(ArticleDto::from);
             case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
             case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
-
         };
     }
 
