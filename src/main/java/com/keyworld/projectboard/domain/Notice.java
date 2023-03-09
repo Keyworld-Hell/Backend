@@ -24,4 +24,18 @@ public class Notice extends BaseTime{
 
     @Column(nullable = false, length = 5000)
     private String content;
+
+    @Column
+    private Long year;
+
+    @Column
+    private Long month;
+
+    @Column
+    private Long day;
+
+    @Column
+    private String filePath;
+
+
 }
