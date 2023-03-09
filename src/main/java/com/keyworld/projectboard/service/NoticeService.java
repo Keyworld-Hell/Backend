@@ -1,53 +1,100 @@
 package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Notice;
-import com.keyworld.projectboard.dto.NoticeDto;
+import com.keyworld.projectboard.dto.NoticeDTO;
 import com.keyworld.projectboard.repository.NoticeRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
-@Getter
-
 public class NoticeService {
-    private final NoticeRepository noticeRepository;
 
-    @Transactional(readOnly = true)
-    public NoticeDto.Response searchById(Long id){
-        Notice entity = noticeRepository.findById(id).orElseThrow(()
-        ->new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+    private final FileService fileService;
 
-        return new NoticeDto.Response(entity);
+    @Autowired
+    private NoticeRepository noticeRepository;
+
+    public NoticeService(FileService fileService) {
+        this.fileService = fileService;
     }
 
-    @Transactional(readOnly = true)
-    public List<NoticeDto.ListResponse> searchAllDesc() {
+    public void createNotice(NoticeDTO noticeDto) throws IOException {
+        Notice notice = new Notice();
+        notice.setTitle(noticeDto.getTitle());
+        notice.setContent(noticeDto.getContent());
+        notice.setYear(noticeDto.getYear());
+        notice.setMonth(notice.getMonth());
+        notice.setDay(notice.getDay());
 
-        return noticeRepository.findAllByOrderByIdDesc().stream()
-                .map(NoticeDto.ListResponse::new)
-                .collect(Collectors.toList());
+
+        if (noticeDto.getFile() != null) {
+            String fileName = noticeDto.getFile().getOriginalFilename();
+            String filePath = "/notices/" + fileName;
+            notice.setFilePath(filePath);
+            fileService.uploadFile(noticeDto.getFile(), filePath);
+        }
+
+        // Save the notice to the database
     }
 
-    @Transactional
-    public void delete(Long id){
+    public NoticeDTO getNotice(Long id) throws IOException {
+        // Retrieve the notice from the database
+        Notice notice = noticeRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException());
 
-        Notice notice = noticeRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("해당 게시물이 존재하지 않습니다."));
+        NoticeDTO noticeDto = new NoticeDTO();
+        noticeDto.setTitle(notice.getTitle());
+        noticeDto.setContent(notice.getContent());
+        noticeDto.setYear(notice.getYear());
+        noticeDto.setMonth(notice.getMonth());
+        noticeDto.setDay(notice.getDay());
 
-        noticeRepository.delete(notice);
+        if (notice.getFilePath() != null) {
+            Resource fileResource = fileService.downloadFile(notice.getFilePath());
+            noticeDto.setFile((MultipartFile) fileResource.getFile());
+        }
+
+        return noticeDto;
     }
 
-    @Transactional
-    public Long save(Notice notice) throws Exception {
+    public List<Notice> getNoticeList() throws IOException{
+        return noticeRepository.findAllByOrderByIdDesc();
+    }
 
-        Notice saveNotice = getNoticeRepository().save(notice);
+    public void updateNotice(Long id, NoticeDTO noticeDto) throws IOException {
+        Notice notice = noticeRepository.findById(id).orElse(null);
 
-        return saveNotice.getId();
+        if (notice == null) {
+            return;
+        }
+
+        notice.setTitle(noticeDto.getTitle());
+        notice.setContent(noticeDto.getContent());
+        notice.setYear(noticeDto.getYear());
+        notice.setMonth(notice.getMonth());
+        notice.setDay(notice.getDay());
+
+        if (noticeDto.getFile() != null) {
+            String fileName = noticeDto.getFile().getOriginalFilename();
+            String filePath = "/notices/" + fileName;
+            notice.setFilePath(filePath);
+            fileService.uploadFile(noticeDto.getFile(), filePath);
+        }
+
+        noticeRepository.save(notice);
+    }
+
+    public void deleteNotice(Long id) {
+        noticeRepository.deleteById(id);
     }
 }
