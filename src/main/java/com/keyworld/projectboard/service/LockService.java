@@ -27,7 +27,7 @@ public class LockService {
 
 
     public Lock getByLanguageAndNumberAndId(Boolean language, Long number, Long id) {
-        return repository.findByLanguageAndNumberAndId(language, number, id)
+        return repository.findByLanguageAndNumberAndId(language, number, id);
     }
 
 
