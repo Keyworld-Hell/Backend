@@ -13,12 +13,13 @@ public record ArticleWithCommentsResponse(
         String author,
         String title,
         String content,
+        String password,
         LocalDateTime createdAt,
         Set<ArticleCommentResponse> articleCommentsResponse
 ) {
 
-    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, LocalDateTime createdAt,String userId, Set<ArticleCommentResponse> articleCommentResponses) {
-        return new ArticleWithCommentsResponse(id, author, title, content,createdAt, articleCommentResponses);
+    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, String password, LocalDateTime createdAt,String userId, Set<ArticleCommentResponse> articleCommentResponses) {
+        return new ArticleWithCommentsResponse(id, author, title, content,password, createdAt, articleCommentResponses);
     }
 
     public static ArticleWithCommentsResponse from(ArticleWithCommentsDto dto) {
@@ -28,6 +29,7 @@ public record ArticleWithCommentsResponse(
                 dto.author(),
                 dto.title(),
                 dto.content(),
+                dto.password(),
                 dto.createdAt(),
                 organizeChildComments(dto.articleCommentDtos())
         );
