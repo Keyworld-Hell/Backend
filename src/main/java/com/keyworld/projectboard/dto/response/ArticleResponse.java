@@ -9,11 +9,12 @@ public record ArticleResponse(
         String author,
         String title,
         String content,
+        String password,
         LocalDateTime createdAt
 ) {
 
-    public static ArticleResponse of(Long id, String author, String title, String content,LocalDateTime createdAt) {
-        return new ArticleResponse(id, author, title, content, createdAt);
+    public static ArticleResponse of(Long id, String author, String title, String content, String password, LocalDateTime createdAt) {
+        return new ArticleResponse(id, author, title, content, password, createdAt);
     }
 
     public static ArticleResponse from(ArticleDto dto) {
@@ -23,6 +24,7 @@ public record ArticleResponse(
                 dto.author(),
                 dto.title(),
                 dto.content(),
+                dto.password(),
                 dto.createdAt()
         );
     }
