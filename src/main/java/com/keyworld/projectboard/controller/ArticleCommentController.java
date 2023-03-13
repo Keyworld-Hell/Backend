@@ -13,14 +13,14 @@ public class ArticleCommentController {
 
     private final ArticleCommentService articleCommentService;
 
-    @PostMapping("/articles/comment/new")
+    @PostMapping("/board/comment/new")
     public void postNewArticleComment(
             @RequestBody ArticleCommentRequest articleCommentRequest
     ) {
         articleCommentService.saveArticleComment(articleCommentRequest.toDto());
     }
 
-    @DeleteMapping("/admin/articles/comment/delete/{commentId}")
+    @DeleteMapping("/adm/board/comment/delete/{commentId}")
     public void deleteArticleComment(
             @PathVariable Long commentId
     ) {
