@@ -19,9 +19,9 @@ public class CertificationController {
     @Autowired
     private CertificationService service;
 
-    @GetMapping("/certification")
-    public List<Certification> getAll() {
-        return service.getAll();
+    @GetMapping("{language}/certification")
+    public List<Certification> getByLanguage(@PathVariable Boolean language) {
+        return service.findByLanguage(language);
     }
 
     @GetMapping("/certification/{id}")
