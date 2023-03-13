@@ -41,7 +41,7 @@ public class NoticeController {
         NoticeDTO noticeDTO =  noticeService.getNotice(noticeService.getNoticeRepository().count());
         return ResponseEntity.ok(noticeDTO);
     }
-    
+
     @GetMapping("/adm/notice")
     public List<Notice> getNoticeList() throws IOException{
         return noticeService.getNoticeList();
