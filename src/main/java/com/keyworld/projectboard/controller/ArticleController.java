@@ -26,7 +26,7 @@ public class ArticleController {
     private final ArticleService articleService;
     private final PaginationService paginationService;
 
-    @GetMapping("/articles")
+    @GetMapping("/board")
     public Page<ArticleResponse> articles(
             @RequestParam(required = false) SearchType searchType,
             @RequestParam(required = false) String searchValue,
@@ -35,22 +35,22 @@ public class ArticleController {
         return articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
     }
 
-    @GetMapping("/articles/{articleId}")
+    @GetMapping("/board/{articleId}")
     public ArticleWithCommentsResponse article(@PathVariable Long articleId) {
         return ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
     }
 
-    @PostMapping("/admin/articles/post")
+    @PostMapping("/board/new")
     public ArticleResponse postNewArticle(@RequestBody ArticleRequest articleRequest) {
         return ArticleResponse.from(articleService.saveArticle(articleRequest.toDto()));
     }
 
-    @PutMapping("/admin/articles{articleId}")
+    @PutMapping("/adm/board/{articleId}")
     public ArticleResponse updateArticle(@PathVariable Long articleId, @RequestParam ArticleRequest articleRequest) {
         return ArticleResponse.from(articleService.updateArticle(articleId, articleRequest.toDto()));
     }
 
-    @DeleteMapping("/admin/articles/delete/{articleId}")
+    @DeleteMapping("/adm/board/delete/{articleId}")
     public void deleteArticle(@PathVariable Long articleId) {
         articleService.deleteArticle(articleId);
     }
