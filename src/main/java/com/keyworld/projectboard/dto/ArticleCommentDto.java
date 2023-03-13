@@ -8,32 +8,30 @@ import java.time.LocalDateTime;
 public record ArticleCommentDto(
         Long id,
         Long articleId,
-        Long parentCommentId,
-        String author,
         String content,
+        Boolean adm,
         LocalDateTime createdAt,
         LocalDateTime modifiedAt
 ) {
 
-    public static ArticleCommentDto of(Long articleId, String author, String content) {
-        return ArticleCommentDto.of(articleId,null,  author, content);
+    public ArticleCommentDto of(String content, Boolean adm) {
+        return ArticleCommentDto.of(articleId, content, adm);
     }
 
-    public static ArticleCommentDto of(Long articleId, Long parentCommentId, String author, String content) {
-        return ArticleCommentDto.of(null, articleId, parentCommentId, author, content, null, null);
+    public static ArticleCommentDto of(Long articleId, String content, Boolean adm) {
+        return ArticleCommentDto.of(null, articleId, content, adm, null, null);
     }
 
-    public static ArticleCommentDto of(Long id, Long articleId, Long parentCommentId, String author, String content, LocalDateTime createdAt,LocalDateTime modifiedAt) {
-        return new ArticleCommentDto(id, articleId, parentCommentId, author,  content, createdAt, modifiedAt);
+    public static ArticleCommentDto of(Long id, Long articleId, String content, Boolean adm, LocalDateTime createdAt,LocalDateTime modifiedAt) {
+        return new ArticleCommentDto(id, articleId,  content, adm, createdAt, modifiedAt);
     }
 
     public static ArticleCommentDto from(ArticleComment entity) {
         return new ArticleCommentDto(
                 entity.getId(),
                 entity.getArticle().getId(),
-                entity.getParentCommentId(),
-                entity.getAuthor(),
                 entity.getContent(),
+                entity.getAdm(),
                 entity.getCreatedAt(),
                 entity.getModifiedAt()
         );
@@ -42,8 +40,8 @@ public record ArticleCommentDto(
     public ArticleComment toEntity(Article article) {
         return ArticleComment.of(
                 article,
-                author,
-                content
+                content,
+                adm
         );
     }
 
