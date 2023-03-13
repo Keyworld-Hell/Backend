@@ -10,11 +10,12 @@ import java.util.TreeSet;
 public record ArticleCommentResponse(
         Long id,
         String content,
+        Boolean adm,
         LocalDateTime createdAt
 ) {
 
-    public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt) {
-        return new ArticleCommentResponse(id, content, createdAt);
+    public static ArticleCommentResponse of(Long id, String content, Boolean adm, LocalDateTime createdAt) {
+        return new ArticleCommentResponse(id, content, adm, createdAt);
     }
 
 
@@ -22,6 +23,7 @@ public record ArticleCommentResponse(
         return ArticleCommentResponse.of(
                 dto.id(),
                 dto.content(),
+                dto.adm(),
                 dto.createdAt()
         );
     }
