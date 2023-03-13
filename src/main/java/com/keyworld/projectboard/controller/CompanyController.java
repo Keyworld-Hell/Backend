@@ -21,16 +21,16 @@ public class CompanyController {
     @Autowired
     private CompanyService service;
 
-    @GetMapping("/company")
+    @GetMapping("/inspect")
     public List<Company> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("/company/{id}")
+    @GetMapping("/inspect/{id}")
     public Company getById(@PathVariable Long id) {
         return service.getById(id);
     }
-    @GetMapping("/company/image/{id}/{fileIndex}")
+    @GetMapping("/inspect/image/{id}/{fileIndex}")
     public ResponseEntity<Resource> getImage(@PathVariable Long id, @PathVariable int fileIndex) {
         Company company = service.getById(id);
         byte[] imageData = company.getFile();
@@ -45,18 +45,18 @@ public class CompanyController {
                 .body(resource);
     }
 
-    @PostMapping("/admin/company/upload")
+    @PostMapping("/adm/inspect/upload")
     public ResponseEntity<String> uploadFile(@ModelAttribute CompanyDTO companyDTO) throws IOException {
         service.save(companyDTO);
         return ResponseEntity.ok("File uploaded successfully");
     }
 
-    @PutMapping("/admin/company/update/{id}")
+    @PutMapping("/adm/inspect/update/{id}")
     public Company update(@PathVariable Long id, @ModelAttribute CompanyDTO companyDTO) throws IOException {
         return service.update(id, companyDTO);
     }
 
-    @DeleteMapping("/admin/company/delete/{id}")
+    @DeleteMapping("/adm/inspect/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
