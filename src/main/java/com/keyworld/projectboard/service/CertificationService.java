@@ -1,6 +1,7 @@
 package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Certification;
+import com.keyworld.projectboard.domain.Company;
 import com.keyworld.projectboard.dto.CertificationDTO;
 import com.keyworld.projectboard.repository.CertificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class CertificationService {
         return repository.findAll();
     }
 
+    public List<Certification> findByLanguage(Boolean language){
+        return repository.findByLanguage(language);
+    }
     public byte[] getByIdFile(Long id) {
         Certification entity = getById(id);
         return entity.getFile();
