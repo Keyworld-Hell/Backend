@@ -46,7 +46,7 @@ public class NoticeService {
             notice.setFilePath(filePath);
             fileService.uploadFile(noticeDto.getFile(), filePath);
         }
-
+        noticeRepository.save(notice);
         // Save the notice to the database
     }
 
