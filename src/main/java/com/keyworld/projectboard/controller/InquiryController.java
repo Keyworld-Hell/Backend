@@ -21,7 +21,7 @@ public class InquiryController {
 
     private final PaginationService paginationService;
 
-    @GetMapping("/inquiries")
+    @GetMapping("/inquiry")
     public Page<InquiryResponse> inquiries(
             @RequestParam(required = false) SearchType searchType,
             @RequestParam(required = false) String searchValue,
@@ -30,17 +30,17 @@ public class InquiryController {
         return inquiryService.searchInquiries(searchType, searchValue, pageable).map(InquiryResponse::from);
     }
 
-    @GetMapping("/inquiries/{inquiryId}")
+    @GetMapping("/inquiry/{inquiryId}")
     public InquiryResponse inquiry(@PathVariable Long inquiryId) {
         return InquiryResponse.from(inquiryService.getInquiry(inquiryId));
     }
 
-    @PostMapping("/admin/inquiries/post")
+    @PostMapping("/admin/inquiry/new")
     public InquiryResponse postNewInquiry(@RequestBody InquiryRequest inquiryRequest) {
         return InquiryResponse.from(inquiryService.saveInquiry(inquiryRequest.toDto()));
     }
 
-    @PutMapping("/admin/inquiries/update/{inquiryId}")
+    @PutMapping("/admin/inquiry/update/{inquiryId}")
     public InquiryResponse updateInquiry(
             @PathVariable Long inquiryId,
             @RequestBody InquiryRequest inquiryRequest
@@ -48,7 +48,7 @@ public class InquiryController {
         return InquiryResponse.from(inquiryService.updateInquiry(inquiryId, inquiryRequest.toDto()));
     }
 
-    @DeleteMapping("/admin/inquiries/delete/{inquiryId}")
+    @DeleteMapping("/admin/inquiry/delete/{inquiryId}")
     public void deleteInquiry(
             @PathVariable Long inquiryId
     ) {
