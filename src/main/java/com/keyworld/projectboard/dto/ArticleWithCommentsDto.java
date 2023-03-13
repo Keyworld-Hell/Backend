@@ -15,12 +15,13 @@ public record ArticleWithCommentsDto(
         String title,
 
         String content,
+        Boolean adm,
         String password,
         LocalDateTime createdAt,
         LocalDateTime modifiedAt
 ) {
-    public static ArticleWithCommentsDto of(Long id,  Set<ArticleCommentDto> articleCommentDtos, String author, String title, String content, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        return new ArticleWithCommentsDto(id, articleCommentDtos, author, title, content, password, createdAt, modifiedAt);
+    public static ArticleWithCommentsDto of(Long id,  Set<ArticleCommentDto> articleCommentDtos, String author, String title, String content, Boolean adm, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        return new ArticleWithCommentsDto(id, articleCommentDtos, author, title, content, adm, password, createdAt, modifiedAt);
     }
 
     public static ArticleWithCommentsDto from(Article entity) {
@@ -33,6 +34,7 @@ public record ArticleWithCommentsDto(
                 entity.getAuthor(),
                 entity.getTitle(),
                 entity.getContent(),
+                entity.getAdm(),
                 entity.getPassword(),
                 entity.getCreatedAt(),
                 entity.getModifiedAt()
