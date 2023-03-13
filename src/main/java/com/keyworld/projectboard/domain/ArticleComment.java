@@ -29,16 +29,18 @@ public class ArticleComment extends AuditingFields {
 
     @Setter @Column(nullable = false, length = 500) private String content; // 본문
 
+    @Setter @Column(nullable = false) private Boolean adm;
 
     protected ArticleComment() {}
 
-    private ArticleComment(Article article, String content) {
+    private ArticleComment(Article article, String content, Boolean adm) {
         this.article = article;
         this.content = content;
+        this.adm = adm;
     }
 
-    public static ArticleComment of(Article article, String content) {
-        return new ArticleComment(article, content);
+    public static ArticleComment of(Article article, String content, Boolean adm) {
+        return new ArticleComment(article, content, adm);
     }
 
     @Override
