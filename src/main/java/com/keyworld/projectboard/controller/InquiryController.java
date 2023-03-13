@@ -35,20 +35,12 @@ public class InquiryController {
         return InquiryResponse.from(inquiryService.getInquiry(inquiryId));
     }
 
-    @PostMapping("/admin/inquiry/new")
+    @PostMapping("/inquiry/new")
     public InquiryResponse postNewInquiry(@RequestBody InquiryRequest inquiryRequest) {
         return InquiryResponse.from(inquiryService.saveInquiry(inquiryRequest.toDto()));
     }
 
-    @PutMapping("/admin/inquiry/update/{inquiryId}")
-    public InquiryResponse updateInquiry(
-            @PathVariable Long inquiryId,
-            @RequestBody InquiryRequest inquiryRequest
-    ) {
-        return InquiryResponse.from(inquiryService.updateInquiry(inquiryId, inquiryRequest.toDto()));
-    }
-
-    @DeleteMapping("/admin/inquiry/delete/{inquiryId}")
+    @DeleteMapping("/adm/inquiry/delete/{inquiryId}")
     public void deleteInquiry(
             @PathVariable Long inquiryId
     ) {
