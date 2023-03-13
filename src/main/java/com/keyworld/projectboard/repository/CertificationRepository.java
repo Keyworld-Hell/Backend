@@ -1,6 +1,7 @@
 package com.keyworld.projectboard.repository;
 
 import com.keyworld.projectboard.domain.Certification;
+import org.apache.el.parser.BooleanNode;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -10,6 +11,6 @@ import java.util.List;
 
 public interface CertificationRepository extends JpaRepository<Certification, Long> {
 
-    List<Certification> findAllByOrderByIdDesc();
+    List<Certification> findByLanguage(Boolean language);
 
 }
