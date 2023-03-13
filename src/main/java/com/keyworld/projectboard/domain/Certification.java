@@ -42,11 +42,10 @@ public class Certification extends BaseTime {
     @Column(nullable = false)
     private Boolean language;
 
-    @Lob
-    @Column(name = "file")
-    private byte[] file;
+    @Transient
+    private File file;
 
-    public Certification(String title, byte[] file) {
+    public Certification(String title, File file) {
         this.title = title;
         this.file = file;
     }
