@@ -17,6 +17,8 @@ public class LockService {
     @Autowired
     private LockRepository repository;
 
+    private FileService fileService;
+
     public List<Lock> getAll(Boolean language, Long number) {
         return repository.findByLanguageAndNumber(language, number);
     }
