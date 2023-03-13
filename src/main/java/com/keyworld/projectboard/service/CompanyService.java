@@ -22,6 +22,10 @@ public class CompanyService {
         return repository.findAll();
     }
 
+    public List<Company> findByLanguage(Boolean language){
+        return repository.findByLanguage(language);
+    }
+
     public byte[] getByIdAndFileIndex(Long id) {
         Company entity = getById(id);
         return entity.getFile();
