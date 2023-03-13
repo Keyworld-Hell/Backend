@@ -12,4 +12,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     List<Company> findAllByOrderByIdDesc();
 
+    List<Company> findByLanguage(Boolean language);
 }
