@@ -26,6 +26,11 @@ public class CompanyController {
         return service.getAll();
     }
 
+    @GetMapping("/{language}/inspect")
+    public List<Company> findByLanguage(@PathVariable Boolean language){
+        return service.findByLanguage(language);
+    }
+
     @GetMapping("/inspect/{id}")
     public Company getById(@PathVariable Long id) {
         return service.getById(id);
