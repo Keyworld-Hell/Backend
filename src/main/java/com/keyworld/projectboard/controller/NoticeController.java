@@ -30,12 +30,18 @@ public class NoticeController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}/notice")
+    @GetMapping("/adm/notice/{id}")
     public ResponseEntity<NoticeDTO> getNotice(@PathVariable Long id) throws IOException {
         NoticeDTO noticeDto = noticeService.getNotice(id);
         return ResponseEntity.ok(noticeDto);
     }
 
+    @GetMapping("/notice")
+    public ResponseEntity<NoticeDTO> getRecent() throws IOException{
+        NoticeDTO noticeDTO =  noticeService.getNotice(noticeService.getNoticeRepository().count());
+        return ResponseEntity.ok(noticeDTO);
+    }
+    
     @GetMapping("/adm/notice")
     public List<Notice> getNoticeList() throws IOException{
         return noticeService.getNoticeList();
