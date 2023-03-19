@@ -13,10 +13,10 @@ import java.io.InputStream;
 @Service
 public class FileService {
 
-    private static final String HOST = "your.filezilla.host";
+    private static final String HOST = "127.0.0.1";
     private static final int PORT = 21;
-    private static final String USERNAME = "your.filezilla.username";
-    private static final String PASSWORD = "your.filezilla.password";
+    private static final String USERNAME = "ystc1247";
+    private static final String PASSWORD = "kj10501050";
 
     public void uploadFile(MultipartFile file, String filePath) throws IOException {
         FTPClient ftpClient = new FTPClient();

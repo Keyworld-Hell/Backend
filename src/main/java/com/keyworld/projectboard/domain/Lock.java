@@ -20,6 +20,7 @@ public class Lock {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="lock_id")
     private Long id;
 
     @Column(nullable = false)
