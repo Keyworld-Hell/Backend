@@ -1,6 +1,6 @@
 package com.keyworld.projectboard.controller;
 
-import com.keyworld.projectboard.domain.Lock;
+import com.keyworld.projectboard.domain.Locks;
 import com.keyworld.projectboard.dto.LockDTO;
 import com.keyworld.projectboard.service.LockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ public class LockController {
     @Autowired
     private LockService service;
     @GetMapping("/{language}/products/{number}")
-    public List<Lock> getAll(@PathVariable Boolean language, @PathVariable Long number) {
+    public List<Locks> getAll(@PathVariable Boolean language, @PathVariable Long number) {
         return service.getAll(language, number);
     }
 
     @GetMapping("/{language}/products/{number}/{id}")
-    public Lock getById(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
+    public Locks getById(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
         return service.getByLanguageAndNumberAndId(language, number, id);
     }
 
     @GetMapping("/{language}/products/{number}/search/{title}")
-    public List<Lock> getLockByTitle(@PathVariable Boolean language, @PathVariable Long number, @PathVariable String title) {
+    public List<Locks> getLockByTitle(@PathVariable Boolean language, @PathVariable Long number, @PathVariable String title) {
         return service.findLocksByTitle(language, number, title);
     }
 
@@ -37,7 +37,7 @@ public class LockController {
     }
 
     @PutMapping("{language}/adm/products/update/{number}/{id}")
-    public Lock update(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id, @ModelAttribute LockDTO dto) throws IOException {
+    public Locks update(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id, @ModelAttribute LockDTO dto) throws IOException {
         return service.update(language, number, id, dto);
     }
 
