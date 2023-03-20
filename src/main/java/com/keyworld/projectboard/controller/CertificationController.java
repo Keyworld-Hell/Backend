@@ -25,38 +25,27 @@ public class CertificationController {
     }
 
     @GetMapping("/certification/{id}")
-    public Certification getById(@PathVariable Long id) {
-        return service.getById(id);
+    public ResponseEntity<CertificationDTO> getById(@PathVariable Long id) throws IOException {
+        CertificationDTO certificationDTO = service.getById(id);
+        return ResponseEntity.ok(certificationDTO);
     }
 
-    @GetMapping("/certification/image/{id}/{fileIndex}")
-    public ResponseEntity<Resource> getImage(@PathVariable Long id, @PathVariable int fileIndex) {
-        Certification certification = service.getById(id);
-        byte[] imageData = certification.getFile();
-        ByteArrayResource resource = new ByteArrayResource(imageData);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE);
 
-        return ResponseEntity.ok()
-                .contentLength(imageData.length)
-                .headers(headers)
-                .body(resource);
-    }
-
-    @PostMapping("/admin/certification/upload")
+    @PostMapping("/adm/certification/new")
     public ResponseEntity<String> uploadFile(@ModelAttribute CertificationDTO certificationDTO) throws IOException {
 
         service.save(certificationDTO);
         return ResponseEntity.ok("File uploaded successfully");
     }
 
-    @PutMapping("/admin/certification/update/{id}")
-    public Certification update(@PathVariable Long id, @ModelAttribute CertificationDTO certificationDTO) throws IOException {
-        return service.update(id, certificationDTO);
+    @PutMapping("/adm/certification/update/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @ModelAttribute CertificationDTO certificationDTO) throws IOException {
+        service.update(id, certificationDTO);
+        return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/admin/certification/delete/{id}")
+    @DeleteMapping("/adm/certification/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
