@@ -8,10 +8,30 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class CompanyDTO {
     private String title;
+    private Boolean language;
     private MultipartFile file;
 
-    public CompanyDTO(String title, MultipartFile file) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public Boolean getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Boolean language) {
+        this.language = language;
     }
 }
