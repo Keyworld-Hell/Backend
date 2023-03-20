@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class CertificationDTO {
     private String title;
+    private Boolean language;
     private MultipartFile file;
 
     public String getTitle() {
@@ -26,5 +27,13 @@ public class CertificationDTO {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public Boolean getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Boolean language) {
+        this.language = language;
     }
 }
