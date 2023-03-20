@@ -43,12 +43,8 @@ public class Company extends BaseTime {
     @Column(nullable = false)
     private Boolean language;
 
-    @Lob
-    @Column(name = "file")
-    private byte[] file;
+    @Column
+    private String filePath;
 
-    public Company(String title, byte[] file) {
-        this.title = title;
-        this.file = file;
-    }
+
 }
