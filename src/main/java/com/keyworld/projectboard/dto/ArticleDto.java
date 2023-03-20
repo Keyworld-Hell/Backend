@@ -12,18 +12,19 @@ public record ArticleDto(
         String author,
         String title,
         String content,
-        Boolean adm,
         String password,
+        Boolean adm,
+
         LocalDateTime createdAt,
         LocalDateTime modifiedAt
 ) {
 
-    public static ArticleDto of(String author, String title, String content, Boolean adm, String password) {
-        return new ArticleDto(null, author, title, content, adm, password, null, null);
+    public static ArticleDto of(String author, String title, String content, String password,Boolean adm ) {
+        return new ArticleDto(null, author, title, content, password,adm,  null, null);
     }
 
-    public static ArticleDto of(Long id, String author, String title, String content, Boolean adm, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        return new ArticleDto(id, author, title, content, adm, password, createdAt, modifiedAt);
+    public static ArticleDto of(Long id, String author, String title, String content, String password,Boolean adm,  LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        return new ArticleDto(id, author, title, content, password,adm,  createdAt, modifiedAt);
     }
 
     public static ArticleDto from(Article entity) {
@@ -32,8 +33,8 @@ public record ArticleDto(
                 entity.getAuthor(),
                 entity.getTitle(),
                 entity.getContent(),
-                entity.getAdm(),
                 entity.getPassword(),
+                entity.getAdm(),
                 entity.getCreatedAt(),
                 entity.getModifiedAt()
         );
@@ -44,8 +45,8 @@ public record ArticleDto(
                 author,
                 title,
                 content,
-                adm,
-                password
+                password,
+                adm
         );
     }
 
