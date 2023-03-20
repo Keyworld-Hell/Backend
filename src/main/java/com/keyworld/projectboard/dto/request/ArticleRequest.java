@@ -7,11 +7,14 @@ public record ArticleRequest(
         String title,
         String content,
 
-        String password
+        String password,
+        Boolean adm
+
+
 ) {
 
-    public static ArticleRequest of(String author, String title, String content, String password) {
-        return new ArticleRequest(author, title, content, password);
+    public static ArticleRequest of(String author, String title, String content, String password, Boolean adm) {
+        return new ArticleRequest(author, title, content, password, adm);
     }
 
     public ArticleDto toDto() {
@@ -19,7 +22,8 @@ public record ArticleRequest(
                 author,
                 title,
                 content,
-                password
+                password,
+                adm
         );
     }
 }
