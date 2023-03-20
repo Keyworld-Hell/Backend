@@ -9,9 +9,7 @@ public record ArticleCommentDto(
         Long id,
         Long articleId,
         String content,
-        Boolean adm,
-        LocalDateTime createdAt,
-        LocalDateTime modifiedAt
+        Boolean adm
 ) {
 
     public ArticleCommentDto of(String content, Boolean adm) {
@@ -19,11 +17,11 @@ public record ArticleCommentDto(
     }
 
     public static ArticleCommentDto of(Long articleId, String content, Boolean adm) {
-        return ArticleCommentDto.of(null, articleId, content, adm, null, null);
+        return ArticleCommentDto.of(null, articleId, content, adm);
     }
 
-    public static ArticleCommentDto of(Long id, Long articleId, String content, Boolean adm, LocalDateTime createdAt,LocalDateTime modifiedAt) {
-        return new ArticleCommentDto(id, articleId,  content, adm, createdAt, modifiedAt);
+    public static ArticleCommentDto of(Long id, Long articleId, String content, Boolean adm) {
+        return new ArticleCommentDto(id, articleId,  content, adm);
     }
 
     public static ArticleCommentDto from(ArticleComment entity) {
@@ -31,9 +29,7 @@ public record ArticleCommentDto(
                 entity.getId(),
                 entity.getArticle().getId(),
                 entity.getContent(),
-                entity.getAdm(),
-                entity.getCreatedAt(),
-                entity.getModifiedAt()
+                entity.getAdm()
         );
     }
 
