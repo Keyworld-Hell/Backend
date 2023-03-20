@@ -1,11 +1,17 @@
 package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Company;
+import com.keyworld.projectboard.domain.Company;
+import com.keyworld.projectboard.domain.Notice;
 import com.keyworld.projectboard.dto.CompanyDTO;
+import com.keyworld.projectboard.dto.NoticeDTO;
 import com.keyworld.projectboard.repository.CompanyRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,9 +20,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Getter
 public class CompanyService {
+
+    private final FileService fileService;
     @Autowired
     private CompanyRepository repository;
+
+    public CompanyService(FileService fileService) {
+        this.fileService = fileService;
+    }
+
 
     public List<Company> getAll() {
         return repository.findAll();
@@ -26,32 +40,55 @@ public class CompanyService {
         return repository.findByLanguage(language);
     }
 
-    public byte[] getByIdAndFileIndex(Long id) {
-        Company entity = getById(id);
-        return entity.getFile();
+    public CompanyDTO getById(Long id) throws IOException {
+        // Retrieve the company from the database
+        Company company = repository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException());
+
+        CompanyDTO companyDTO = new CompanyDTO();
+        companyDTO.setTitle(company.getTitle());
+        companyDTO.setLanguage(company.getLanguage());
+
+        if (company.getFilePath() != null) {
+            Resource fileResource = fileService.downloadFile(company.getFilePath());
+            companyDTO.setFile((MultipartFile) fileResource.getFile());
+        }
+
+        return companyDTO;
     }
 
-    public Company getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException());
+    public void save(CompanyDTO dto) throws IOException {
+        Company company = new Company();
+        company.setTitle(dto.getTitle());
+        company.setLanguage(dto.getLanguage());
+        if (dto.getFile() != null) {
+            String fileName = dto.getFile().getOriginalFilename();
+            String filePath = "/companys/" + fileName;
+            company.setFilePath(filePath);
+            fileService.uploadFile(dto.getFile(), filePath);
+        }
     }
 
-    public Company save(CompanyDTO dto) throws IOException {
-        String title = dto.getTitle();
-        Company entity = new Company(title, dto.getFile().getBytes());
-        return repository.save(entity);
-    }
+    public void update(Long id, CompanyDTO companyDTO) throws IOException {
+        Company company = repository.findById(id).orElse(null);
 
-    public Company update(Long id, CompanyDTO dto) throws IOException {
-        Company entity = getById(id);
-        String title = dto.getTitle();
-        entity.setTitle(title);
-        entity.setFile(dto.getFile().getBytes());
-        return repository.save(entity);
-    }
+        if (company == null) {
+            return;
+        }
 
+        company.setTitle(companyDTO.getTitle());
+        company.setLanguage(companyDTO.getLanguage());
+
+        if (companyDTO.getFile() != null) {
+            String fileName = companyDTO.getFile().getOriginalFilename();
+            String filePath = "/companys/" + fileName;
+            company.setFilePath(filePath);
+            fileService.uploadFile(companyDTO.getFile(), filePath);
+        }
+
+        repository.save(company);
+    }
     public void delete(Long id) {
-        Company entity = getById(id);
-        repository.delete(entity);
+        repository.deleteById(id);
     }
 }
