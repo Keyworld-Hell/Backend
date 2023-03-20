@@ -13,14 +13,13 @@ public record ArticleWithCommentsResponse(
         String author,
         String title,
         String content,
-        Boolean adm,
         String password,
-        LocalDateTime createdAt,
+        Boolean adm,
         Set<ArticleCommentResponse> articleCommentsResponse
 ) {
 
-    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, Boolean adm, String password, LocalDateTime createdAt,String userId, Set<ArticleCommentResponse> articleCommentResponses) {
-        return new ArticleWithCommentsResponse(id, author, title, content,adm, password, createdAt, articleCommentResponses);
+    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, String password, Boolean adm, Set<ArticleCommentResponse> articleCommentResponses) {
+        return new ArticleWithCommentsResponse(id, author, title, content, password, adm, articleCommentResponses);
     }
 
     public static ArticleWithCommentsResponse from(ArticleWithCommentsDto dto) {
@@ -30,9 +29,8 @@ public record ArticleWithCommentsResponse(
                 dto.author(),
                 dto.title(),
                 dto.content(),
-                dto.adm(),
                 dto.password(),
-                dto.createdAt(),
+                dto.adm(),
                 organizeChildComments(dto.articleCommentDtos())
         );
     }
@@ -42,22 +40,6 @@ public record ArticleWithCommentsResponse(
         Map<Long, ArticleCommentResponse> map = dtos.stream()
                 .map(ArticleCommentResponse::from)
                 .collect(Collectors.toMap(ArticleCommentResponse::id, Function.identity()));
-
-        map.values().stream()
-                .filter(ArticleCommentResponse::hasParentComment)
-                .forEach(comment -> {
-                    ArticleCommentResponse parentComment = map.get(comment.parentCommentId());
-                    parentComment.childComments().add(comment);
-                });
-
-        return map.values().stream()
-                .filter(comment -> !comment.hasParentComment())
-                .collect(Collectors.toCollection(() ->
-                        new TreeSet<>(Comparator
-                                .comparing(ArticleCommentResponse::createdAt)
-                                .reversed()
-                                .thenComparingLong(ArticleCommentResponse::id)
-                        )
-                ));
+        return new TreeSet<>(map.values());
     }
 }
