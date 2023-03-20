@@ -10,14 +10,22 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QLock is a Querydsl query type for Lock
+ * QLocks is a Querydsl query type for Locks
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QLock extends EntityPathBase<Lock> {
+public class QLocks extends EntityPathBase<Locks> {
 
-    private static final long serialVersionUID = -789205246L;
+    private static final long serialVersionUID = 1304441265L;
 
-    public static final QLock lock = new QLock("lock");
+    public static final QLocks locks = new QLocks("locks");
+
+    public final QAuditingFields _super = new QAuditingFields(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
+
+    //inherited
+    public final StringPath createdBy = _super.createdBy;
 
     public final StringPath feature = createString("feature");
 
@@ -27,6 +35,12 @@ public class QLock extends EntityPathBase<Lock> {
 
     public final StringPath material = createString("material");
 
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
+
+    //inherited
+    public final StringPath modifiedBy = _super.modifiedBy;
+
     public final NumberPath<Long> number = createNumber("number", Long.class);
 
     public final StringPath purpose = createString("purpose");
@@ -35,16 +49,16 @@ public class QLock extends EntityPathBase<Lock> {
 
     public final StringPath title = createString("title");
 
-    public QLock(String variable) {
-        super(Lock.class, forVariable(variable));
+    public QLocks(String variable) {
+        super(Locks.class, forVariable(variable));
     }
 
-    public QLock(Path<? extends Lock> path) {
+    public QLocks(Path<? extends Locks> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QLock(PathMetadata metadata) {
-        super(Lock.class, metadata);
+    public QLocks(PathMetadata metadata) {
+        super(Locks.class, metadata);
     }
 
 }

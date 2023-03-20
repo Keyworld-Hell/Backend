@@ -24,11 +24,9 @@ public class QArticleComment extends EntityPathBase<ArticleComment> {
 
     public final QAuditingFields _super = new QAuditingFields(this);
 
+    public final BooleanPath adm = createBoolean("adm");
+
     public final QArticle article;
-
-    public final StringPath author = createString("author");
-
-    public final SetPath<ArticleComment, QArticleComment> childComments = this.<ArticleComment, QArticleComment>createSet("childComments", ArticleComment.class, QArticleComment.class, PathInits.DIRECT2);
 
     public final StringPath content = createString("content");
 
@@ -45,8 +43,6 @@ public class QArticleComment extends EntityPathBase<ArticleComment> {
 
     //inherited
     public final StringPath modifiedBy = _super.modifiedBy;
-
-    public final NumberPath<Long> parentCommentId = createNumber("parentCommentId", Long.class);
 
     public QArticleComment(String variable) {
         this(ArticleComment.class, forVariable(variable), INITS);

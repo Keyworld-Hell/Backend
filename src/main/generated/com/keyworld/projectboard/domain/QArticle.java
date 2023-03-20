@@ -22,6 +22,8 @@ public class QArticle extends EntityPathBase<Article> {
 
     public final QAuditingFields _super = new QAuditingFields(this);
 
+    public final BooleanPath adm = createBoolean("adm");
+
     public final SetPath<ArticleComment, QArticleComment> articleComments = this.<ArticleComment, QArticleComment>createSet("articleComments", ArticleComment.class, QArticleComment.class, PathInits.DIRECT2);
 
     public final StringPath author = createString("author");
@@ -41,6 +43,8 @@ public class QArticle extends EntityPathBase<Article> {
 
     //inherited
     public final StringPath modifiedBy = _super.modifiedBy;
+
+    public final StringPath password = createString("password");
 
     public final StringPath title = createString("title");
 
