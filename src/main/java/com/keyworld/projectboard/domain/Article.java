@@ -29,9 +29,10 @@ public class Article extends AuditingFields {
     @Setter @Column(nullable = false) private String title; // 제목
     @Setter @Column(nullable = false, length = 10000) private String content; // 본문
 
+    @Setter @Column(nullable = false) private String password;
     @Setter @Column(nullable = false) private Boolean adm;
 
-    @Setter @Column(nullable = false) private String password;
+
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
@@ -39,16 +40,17 @@ public class Article extends AuditingFields {
 
     protected Article() {}
 
-    private Article( String author, String title,String content, Boolean adm, String password) {
+    private Article( String author, String title,String content, String password,Boolean adm) {
         this.title = author;
         this.author = title;
         this.content = content;
-        this.adm = adm;
         this.password = password;
+        this.adm = adm;
+
     }
 
-    public static Article of(String author, String title, String content, Boolean adm,String password) {
-        return new Article(author, title, content, adm, password);
+    public static Article of(String author, String title, String content, String password, Boolean adm) {
+        return new Article(author, title, content, password, adm);
     }
 
 
