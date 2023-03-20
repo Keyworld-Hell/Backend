@@ -12,9 +12,9 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Entity(name = "Lock")
-@Table(name = "LOCK")
-public class Lock {
+@Entity(name = "Locks")
+@Table(name = "LOCKS")
+public class Locks extends AuditingFields{
     /**
      * 제품 이름, 제품 사진, 재질, 표면 처리, 용도, 특징, 도면 사진, 도면 첨부파일
      */
@@ -53,7 +53,7 @@ public class Lock {
     @Transient
     private List<File> fileList;
 
-    public Lock(Boolean language, Long number, String title, String material, String surface, String purpose, String feature, File cam, File dwg, List<File> fileList) {
+    public Locks(Boolean language, Long number, String title, String material, String surface, String purpose, String feature, File cam, File dwg, List<File> fileList) {
         this.language = language;
         this.number = number;
         this.title = title;
