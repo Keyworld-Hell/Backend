@@ -3,11 +3,10 @@ package com.keyworld.projectboard.service;
 import java.io.IOException;
 import java.util.List;
 
-import com.keyworld.projectboard.domain.Lock;
+import com.keyworld.projectboard.domain.Locks;
 import com.keyworld.projectboard.dto.LockDTO;
 import com.keyworld.projectboard.repository.LockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 
@@ -19,22 +18,22 @@ public class LockService {
 
     private FileService fileService;
 
-    public List<Lock> getAll(Boolean language, Long number) {
+    public List<Locks> getAll(Boolean language, Long number) {
         return repository.findByLanguageAndNumber(language, number);
     }
 
-    public List<Lock> findLocksByTitle(Boolean language, Long number, String title) {
+    public List<Locks> findLocksByTitle(Boolean language, Long number, String title) {
         return repository.findByLanguageAndNumberAndTitleContainingIgnoreCase(language, number, title);
     }
 
 
-    public Lock getByLanguageAndNumberAndId(Boolean language, Long number, Long id) {
+    public Locks getByLanguageAndNumberAndId(Boolean language, Long number, Long id) {
         return repository.findByLanguageAndNumberAndId(language, number, id);
     }
 
 
-    public Lock save(LockDTO dto) throws IOException {
-        Lock entity = new Lock();
+    public Locks save(LockDTO dto) throws IOException {
+        Locks entity = new Locks();
         entity.setTitle(dto.getTitle());
         entity.setMaterial(dto.getMaterial());
         entity.setSurface(dto.getSurface());
@@ -44,8 +43,8 @@ public class LockService {
     }
 
 
-    public Lock update(Boolean language, Long number, Long id, LockDTO dto) throws IOException {
-        Lock entity = getByLanguageAndNumberAndId(language, number, id);
+    public Locks update(Boolean language, Long number, Long id, LockDTO dto) throws IOException {
+        Locks entity = getByLanguageAndNumberAndId(language, number, id);
         entity.setLanguage(dto.getLanguage());
         entity.setNumber(dto.getNumber());
         entity.setTitle(dto.getTitle());
@@ -58,7 +57,7 @@ public class LockService {
 
 
     public void delete(Boolean language, Long number, Long id) {
-        Lock entity = getByLanguageAndNumberAndId(language, number, id);
+        Locks entity = getByLanguageAndNumberAndId(language, number, id);
         repository.delete(entity);
     }
 
