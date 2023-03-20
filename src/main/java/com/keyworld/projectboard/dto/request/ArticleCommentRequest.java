@@ -5,24 +5,20 @@ import com.keyworld.projectboard.dto.ArticleDto;
 
 public record ArticleCommentRequest(
         Long articleId,
-        Long parentCommentId,
-        String author,
-        String content
+        String content,
+        Boolean admin
 ) {
 
-    public static ArticleCommentRequest of(Long articleId, String author,  String content) {
-        return ArticleCommentRequest.of(articleId, null,author, content);
+    public static ArticleCommentRequest of(Long articleId, String content, Boolean admin) {
+        return ArticleCommentRequest.of(articleId, content, admin);
     }
 
-    public static ArticleCommentRequest of(Long articleId, Long parentCommentId, String author, String content) {
-        return new ArticleCommentRequest(articleId, parentCommentId, author, content);
-    }
 
     public ArticleCommentDto toDto() {
         return ArticleCommentDto.of(
                 articleId,
-                author,
-                content
+                content,
+                admin
         );
     }
 
