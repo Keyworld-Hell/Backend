@@ -53,7 +53,7 @@ public class NoticeService {
     public NoticeDTO getNotice(Long id) throws IOException {
         // Retrieve the notice from the database
         Notice notice = noticeRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException());
+                orElseThrow(ResourceNotFoundException::new);
 
         NoticeDTO noticeDto = new NoticeDTO();
         noticeDto.setTitle(notice.getTitle());
