@@ -36,7 +36,7 @@ public class InquiryController {
     }
 
     @PostMapping("/inquiry/new")
-    public InquiryResponse postNewInquiry(@RequestBody InquiryRequest inquiryRequest) {
+    public InquiryResponse postNewInquiry(@RequestParam InquiryRequest inquiryRequest) {
         return InquiryResponse.from(inquiryService.saveInquiry(inquiryRequest.toDto()));
     }
 
