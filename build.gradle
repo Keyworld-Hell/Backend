@@ -54,9 +54,9 @@ dependencies {
 
 
     // spring security
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.security:spring-security-test'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.0.2'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.security:spring-security-test'
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.0.2'
 }
 
 tasks.named('test') {
