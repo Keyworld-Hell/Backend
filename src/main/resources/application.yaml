@@ -1,7 +1,7 @@
 server:
   port: 8080
 
-debug: false
+debug: true
 management.endpoints.web.exposure.include: "*"
 
 logging:
@@ -30,7 +30,6 @@ spring:
   data.rest:
     base-path: /api
     detection-strategy: annotated
-  thymeleaf3.decoupled-logic: true
   sql:
     init:
       encoding: utf-8
