@@ -27,8 +27,11 @@ public class QCertification extends EntityPathBase<Certification> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDateTime = _super.createdDateTime;
 
+<<<<<<< Updated upstream
     public final StringPath filePath = createString("filePath");
 
+=======
+>>>>>>> Stashed changes
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final BooleanPath language = createBoolean("language");

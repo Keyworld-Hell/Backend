@@ -27,7 +27,11 @@ public class QCompany extends EntityPathBase<Company> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDateTime = _super.createdDateTime;
 
+<<<<<<< Updated upstream
     public final StringPath filePath = createString("filePath");
+=======
+    public final ArrayPath<byte[], Byte> file = createArray("file", byte[].class);
+>>>>>>> Stashed changes
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
