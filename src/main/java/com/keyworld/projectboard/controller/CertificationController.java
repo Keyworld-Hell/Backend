@@ -30,11 +30,13 @@ public class CertificationController {
         return ResponseEntity.ok(certificationDTO);
     }
 
-
+    @GetMapping("/certification")
+    public List<Certification> getAll(){
+        return service.getAll();
+    }
 
     @PostMapping("/adm/certification/new")
     public ResponseEntity<String> uploadFile(@ModelAttribute CertificationDTO certificationDTO) throws IOException {
-
         service.save(certificationDTO);
         return ResponseEntity.ok("File uploaded successfully");
     }
