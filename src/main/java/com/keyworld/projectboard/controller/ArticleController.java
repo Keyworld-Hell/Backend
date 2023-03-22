@@ -41,12 +41,12 @@ public class ArticleController {
     }
 
     @PostMapping("/board/new")
-    public ArticleResponse postNewArticle(@RequestBody ArticleRequest articleRequest) {
+    public ArticleResponse postNewArticle(@ModelAttribute ArticleRequest articleRequest) {
         return ArticleResponse.from(articleService.saveArticle(articleRequest.toDto()));
     }
 
     @PutMapping("/adm/board/{articleId}")
-    public ArticleResponse updateArticle(@PathVariable Long articleId, @RequestParam ArticleRequest articleRequest) {
+    public ArticleResponse updateArticle(@PathVariable Long articleId, @ModelAttribute ArticleRequest articleRequest) {
         return ArticleResponse.from(articleService.updateArticle(articleId, articleRequest.toDto()));
     }
 
