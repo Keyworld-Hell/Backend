@@ -4,6 +4,7 @@ import com.keyworld.projectboard.domain.Certification;
 import com.keyworld.projectboard.domain.Company;
 import com.keyworld.projectboard.domain.Notice;
 import com.keyworld.projectboard.dto.CertificationDTO;
+import com.keyworld.projectboard.dto.NewFile;
 import com.keyworld.projectboard.dto.NoticeDTO;
 import com.keyworld.projectboard.repository.CertificationRepository;
 import lombok.Getter;
@@ -42,8 +43,8 @@ public class CertificationService {
 
     public CertificationDTO getById(Long id) throws IOException {
         // Retrieve the certification from the database
-        Certification certification = repository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException());
+        Certification certification = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         CertificationDTO certificationDTO = new CertificationDTO();
         certificationDTO.setTitle(certification.getTitle());
@@ -51,12 +52,12 @@ public class CertificationService {
 
         if (certification.getFilePath() != null) {
             Resource fileResource = fileService.downloadFile(certification.getFilePath());
-            certificationDTO.setFile((MultipartFile) fileResource.getFile());
+            MultipartFile multipartFile = new NewFile(fileResource, certification.getFilePath());
+            certificationDTO.setFile(multipartFile);
         }
 
         return certificationDTO;
     }
-
     public void save(CertificationDTO dto) throws IOException {
         Certification certification = new Certification();
         certification.setTitle(dto.getTitle());
@@ -67,6 +68,7 @@ public class CertificationService {
             certification.setFilePath(filePath);
             fileService.uploadFile(dto.getFile(), filePath);
         }
+        repository.save(certification);
     }
 
     public void update(Long id, CertificationDTO certificationDTO) throws IOException {
