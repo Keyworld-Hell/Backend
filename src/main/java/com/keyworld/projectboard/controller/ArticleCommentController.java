@@ -15,7 +15,7 @@ public class ArticleCommentController {
 
     @PostMapping("/board/comment/new")
     public void postNewArticleComment(
-            @RequestBody ArticleCommentRequest articleCommentRequest
+            @ModelAttribute ArticleCommentRequest articleCommentRequest
     ) {
         articleCommentService.saveArticleComment(articleCommentRequest.toDto());
     }
