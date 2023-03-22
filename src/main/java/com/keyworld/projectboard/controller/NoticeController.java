@@ -25,7 +25,7 @@ public class NoticeController {
     }
 
     @PostMapping("/adm/notice/new")
-    public ResponseEntity<Void> createNotice(@RequestParam NoticeDTO noticeDto) throws IOException {
+    public ResponseEntity<Void> createNotice(@ModelAttribute NoticeDTO noticeDto) throws IOException {
         noticeService.createNotice(noticeDto);
         return ResponseEntity.ok().build();
     }
