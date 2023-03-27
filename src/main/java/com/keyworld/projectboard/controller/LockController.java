@@ -41,7 +41,7 @@ public class LockController {
         return service.update(language, number, id, dto);
     }
 
-    @DeleteMapping("/adm/products/delete/{number}/{id}")
+    @DeleteMapping("{language}/adm/products/delete/{number}/{id}")
     public ResponseEntity<Void> delete(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
         service.delete(language, number, id);
         return ResponseEntity.noContent().build();
