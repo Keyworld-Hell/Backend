@@ -1,16 +1,20 @@
 package com.keyworld.projectboard.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.keyworld.projectboard.domain.Locks;
 import com.keyworld.projectboard.dto.LockDTO;
 import com.keyworld.projectboard.repository.LockRepository;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
+@Getter
 public class LockService {
 
     @Autowired
@@ -39,6 +43,24 @@ public class LockService {
         entity.setSurface(dto.getSurface());
         entity.setPurpose(dto.getPurpose());
         entity.setFeature(dto.getFeature());
+        String fileName = dto.getFile1().getOriginalFilename();
+        String filePath = "/" + fileName;
+        entity.setPath1(filePath);
+        fileService.uploadFile(dto.getFile1(), filePath);
+        fileName = dto.getFile2().getOriginalFilename();
+        filePath = "/" + fileName;
+        entity.setPath2(filePath);
+        fileService.uploadFile(dto.getFile2(), filePath);
+        List<String> filePathList = new ArrayList<>();
+        if (dto.getFiles() != null) {
+            for (MultipartFile file : dto.getFiles()) {
+                fileName = file.getOriginalFilename();
+                filePath = "/" + fileName;
+                filePathList.add(filePath);
+                fileService.uploadFile(file, filePath);
+            }
+        }
+        entity.setFilePathList(filePathList);
         return repository.save(entity);
     }
 
@@ -52,6 +74,31 @@ public class LockService {
         entity.setSurface(dto.getSurface());
         entity.setPurpose(dto.getPurpose());
         entity.setFeature(dto.getFeature());
+        String fileName, filePath;
+        if(dto.getFile1()!=null) {
+            fileName = dto.getFile1().getOriginalFilename();
+            filePath = "/" + fileName;
+            entity.setPath1(filePath);
+
+            fileService.uploadFile(dto.getFile1(), filePath);
+        }
+        if(dto.getFile2()!=null) {
+            fileName = dto.getFile2().getOriginalFilename();
+            filePath = "/" + fileName;
+            entity.setPath2(filePath);
+
+            fileService.uploadFile(dto.getFile2(), filePath);
+        }
+        List<String> filePathList = new ArrayList<>();
+        if (dto.getFiles() != null) {
+            for (MultipartFile file : dto.getFiles()) {
+                fileName = file.getOriginalFilename();
+                filePath = "/" + fileName;
+                filePathList.add(filePath);
+                fileService.uploadFile(file, filePath);
+            }
+        }
+        entity.setFilePathList(filePathList);
         return repository.save(entity);
     }
 
