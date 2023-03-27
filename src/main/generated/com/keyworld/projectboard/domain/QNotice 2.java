@@ -10,16 +10,18 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QCompany is a Querydsl query type for Company
+ * QNotice is a Querydsl query type for Notice
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QCompany extends EntityPathBase<Company> {
+public class QNotice extends EntityPathBase<Notice> {
 
-    private static final long serialVersionUID = 49377094L;
+    private static final long serialVersionUID = 1840735983L;
 
-    public static final QCompany company = new QCompany("company");
+    public static final QNotice notice = new QNotice("notice");
 
     public final QBaseTime _super = new QBaseTime(this);
+
+    public final StringPath content = createString("content");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> CreatedDateTime = _super.CreatedDateTime;
@@ -27,11 +29,11 @@ public class QCompany extends EntityPathBase<Company> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDateTime = _super.createdDateTime;
 
+    public final NumberPath<Long> day = createNumber("day", Long.class);
+
     public final StringPath filePath = createString("filePath");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
-
-    public final BooleanPath language = createBoolean("language");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> ModifiedDateTime = _super.ModifiedDateTime;
@@ -39,18 +41,22 @@ public class QCompany extends EntityPathBase<Company> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDateTime = _super.modifiedDateTime;
 
+    public final NumberPath<Long> month = createNumber("month", Long.class);
+
     public final StringPath title = createString("title");
 
-    public QCompany(String variable) {
-        super(Company.class, forVariable(variable));
+    public final NumberPath<Long> year = createNumber("year", Long.class);
+
+    public QNotice(String variable) {
+        super(Notice.class, forVariable(variable));
     }
 
-    public QCompany(Path<? extends Company> path) {
+    public QNotice(Path<? extends Notice> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QCompany(PathMetadata metadata) {
-        super(Company.class, metadata);
+    public QNotice(PathMetadata metadata) {
+        super(Notice.class, metadata);
     }
 
 }

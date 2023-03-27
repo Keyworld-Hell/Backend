@@ -23,13 +23,21 @@ public class FileService {
         ftpClient.connect(HOST, PORT);
         ftpClient.login(USERNAME, PASSWORD);
 
-        InputStream inputStream = file.getInputStream();
-        ftpClient.storeFile(filePath, inputStream);
+        try {
+            InputStream inputStream = file.getInputStream();
+            ftpClient.storeFile(filePath, inputStream);
 
-        inputStream.close();
-        ftpClient.logout();
-        ftpClient.disconnect();
+            inputStream.close();
+            ftpClient.logout();
+            ftpClient.disconnect();
+            System.out.println("success___________");
+        } catch (IOException e) {
+            // Log the error message
+            System.err.println("Error uploading file: " + e.getMessage());
+            throw e;
+        }
     }
+
 
     public Resource downloadFile(String filePath) throws IOException {
         FTPClient ftpClient = new FTPClient();

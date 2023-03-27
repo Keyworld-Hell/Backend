@@ -63,7 +63,7 @@ public class CompanyService {
         company.setLanguage(dto.getLanguage());
         if (dto.getFile() != null) {
             String fileName = dto.getFile().getOriginalFilename();
-            String filePath = "/companys/" + fileName;
+            String filePath = "/inspect/" + fileName;
             company.setFilePath(filePath);
             fileService.uploadFile(dto.getFile(), filePath);
         }

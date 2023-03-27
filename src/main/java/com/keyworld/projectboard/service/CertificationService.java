@@ -7,6 +7,7 @@ import com.keyworld.projectboard.dto.CertificationDTO;
 import com.keyworld.projectboard.dto.NewFile;
 import com.keyworld.projectboard.dto.NoticeDTO;
 import com.keyworld.projectboard.repository.CertificationRepository;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -64,9 +65,14 @@ public class CertificationService {
         certification.setLanguage(dto.getLanguage());
         if (dto.getFile() != null) {
             String fileName = dto.getFile().getOriginalFilename();
+            System.out.println(fileName);
             String filePath = "/certifications/" + fileName;
+            System.out.println(filePath);
             certification.setFilePath(filePath);
             fileService.uploadFile(dto.getFile(), filePath);
+        }
+        else{
+            System.out.println("no file here");
         }
         repository.save(certification);
     }
