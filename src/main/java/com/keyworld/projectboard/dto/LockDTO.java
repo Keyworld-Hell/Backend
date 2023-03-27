@@ -13,6 +13,8 @@ public class LockDTO {
     private String purpose;
     private String feature;
 
+    private String description;
+
     private MultipartFile file1;
     private MultipartFile file2;
     private List<MultipartFile> files;
@@ -87,5 +89,13 @@ public class LockDTO {
 
     public void setFiles(List<MultipartFile> files) {
         this.files = files;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
