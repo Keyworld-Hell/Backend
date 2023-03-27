@@ -2,6 +2,8 @@ package com.keyworld.projectboard.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public class LockDTO {
     private Boolean language;
     private Long number;
@@ -10,6 +12,10 @@ public class LockDTO {
     private String surface;
     private String purpose;
     private String feature;
+
+    private MultipartFile file1;
+    private MultipartFile file2;
+    private List<MultipartFile> files;
 
     public Boolean getLanguage() { return language; }
 
@@ -59,4 +65,27 @@ public class LockDTO {
         this.feature = feature;
     }
 
+    public MultipartFile getFile1() {
+        return file1;
+    }
+
+    public void setFile1(MultipartFile file1) {
+        this.file1 = file1;
+    }
+
+    public MultipartFile getFile2() {
+        return file2;
+    }
+
+    public void setFile2(MultipartFile file2) {
+        this.file2 = file2;
+    }
+
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
+    }
 }
