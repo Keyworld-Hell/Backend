@@ -44,25 +44,16 @@ public class Locks extends AuditingFields{
     @Column(nullable = false, length = 1000)
     private String feature;
 
-    @Transient
-    private File cam;
+    @Column(nullable = true, length = 2000)
+    private String description;
 
-    @Transient
-    private File dwg;
+    @Column(nullable = false)
+    private String path1;
 
-    @Transient
-    private List<File> fileList;
+    @Column(nullable = false)
+    private String path2;
 
-    public Locks(Boolean language, Long number, String title, String material, String surface, String purpose, String feature, File cam, File dwg, List<File> fileList) {
-        this.language = language;
-        this.number = number;
-        this.title = title;
-        this.material = material;
-        this.surface = surface;
-        this.purpose = purpose;
-        this.feature = feature;
-        this.cam = cam;
-        this.dwg = dwg;
-        this.fileList = fileList;
-    }
+    @ElementCollection
+    private List<String> filePathList;
+
 }
