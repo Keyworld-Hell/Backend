@@ -30,7 +30,6 @@ public class FileService {
             inputStream.close();
             ftpClient.logout();
             ftpClient.disconnect();
-            System.out.println("success___________");
         } catch (IOException e) {
             // Log the error message
             System.err.println("Error uploading file: " + e.getMessage());
