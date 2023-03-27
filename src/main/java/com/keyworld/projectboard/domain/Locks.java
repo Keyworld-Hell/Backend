@@ -44,7 +44,7 @@ public class Locks extends AuditingFields{
     @Column(nullable = false, length = 1000)
     private String feature;
 
-    @Column(nullable = true, length = 2000)
+    @Column(length = 2000)
     private String description;
 
     @Column(nullable = false)
