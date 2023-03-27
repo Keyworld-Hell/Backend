@@ -20,7 +20,11 @@ public class LockService {
     @Autowired
     private LockRepository repository;
 
-    private FileService fileService;
+    private final FileService fileService;
+
+    public LockService(FileService fileService) {
+        this.fileService = fileService;
+    }
 
     public List<Locks> getAll(Boolean language, Long number) {
         return repository.findByLanguageAndNumber(language, number);
@@ -40,22 +44,25 @@ public class LockService {
         Locks entity = new Locks();
         entity.setTitle(dto.getTitle());
         entity.setMaterial(dto.getMaterial());
+        entity.setNumber(dto.getNumber());
         entity.setSurface(dto.getSurface());
+        entity.setLanguage(dto.getLanguage());
         entity.setPurpose(dto.getPurpose());
+        entity.setDescription(dto.getDescription());
         entity.setFeature(dto.getFeature());
         String fileName = dto.getFile1().getOriginalFilename();
-        String filePath = "/" + fileName;
+        String filePath = "/locks/" + fileName;
         entity.setPath1(filePath);
         fileService.uploadFile(dto.getFile1(), filePath);
         fileName = dto.getFile2().getOriginalFilename();
-        filePath = "/" + fileName;
+        filePath = "/locks/" + fileName;
         entity.setPath2(filePath);
         fileService.uploadFile(dto.getFile2(), filePath);
         List<String> filePathList = new ArrayList<>();
         if (dto.getFiles() != null) {
             for (MultipartFile file : dto.getFiles()) {
                 fileName = file.getOriginalFilename();
-                filePath = "/" + fileName;
+                filePath = "/locks/" + fileName;
                 filePathList.add(filePath);
                 fileService.uploadFile(file, filePath);
             }
@@ -67,24 +74,25 @@ public class LockService {
 
     public Locks update(Boolean language, Long number, Long id, LockDTO dto) throws IOException {
         Locks entity = getByLanguageAndNumberAndId(language, number, id);
-        entity.setLanguage(dto.getLanguage());
-        entity.setNumber(dto.getNumber());
         entity.setTitle(dto.getTitle());
         entity.setMaterial(dto.getMaterial());
+        entity.setNumber(dto.getNumber());
         entity.setSurface(dto.getSurface());
+        entity.setLanguage(dto.getLanguage());
         entity.setPurpose(dto.getPurpose());
+        entity.setDescription(dto.getDescription());
         entity.setFeature(dto.getFeature());
         String fileName, filePath;
         if(dto.getFile1()!=null) {
             fileName = dto.getFile1().getOriginalFilename();
-            filePath = "/" + fileName;
+            filePath = "/locks/" + fileName;
             entity.setPath1(filePath);
 
             fileService.uploadFile(dto.getFile1(), filePath);
         }
         if(dto.getFile2()!=null) {
             fileName = dto.getFile2().getOriginalFilename();
-            filePath = "/" + fileName;
+            filePath = "/locks/" + fileName;
             entity.setPath2(filePath);
 
             fileService.uploadFile(dto.getFile2(), filePath);
@@ -93,7 +101,7 @@ public class LockService {
         if (dto.getFiles() != null) {
             for (MultipartFile file : dto.getFiles()) {
                 fileName = file.getOriginalFilename();
-                filePath = "/" + fileName;
+                filePath = "/locks/" + fileName;
                 filePathList.add(filePath);
                 fileService.uploadFile(file, filePath);
             }
