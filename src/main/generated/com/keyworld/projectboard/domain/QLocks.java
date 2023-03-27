@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -27,7 +28,11 @@ public class QLocks extends EntityPathBase<Locks> {
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
+    public final StringPath description = createString("description");
+
     public final StringPath feature = createString("feature");
+
+    public final ListPath<String, StringPath> filePathList = this.<String, StringPath>createList("filePathList", String.class, StringPath.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -42,6 +47,10 @@ public class QLocks extends EntityPathBase<Locks> {
     public final StringPath modifiedBy = _super.modifiedBy;
 
     public final NumberPath<Long> number = createNumber("number", Long.class);
+
+    public final StringPath path1 = createString("path1");
+
+    public final StringPath path2 = createString("path2");
 
     public final StringPath purpose = createString("purpose");
 
