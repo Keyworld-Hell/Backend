@@ -25,9 +25,6 @@ public class QLocks extends EntityPathBase<Locks> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
-    //inherited
-    public final StringPath createdBy = _super.createdBy;
-
     public final StringPath description = createString("description");
 
     public final StringPath feature = createString("feature");
@@ -42,9 +39,6 @@ public class QLocks extends EntityPathBase<Locks> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
-
-    //inherited
-    public final StringPath modifiedBy = _super.modifiedBy;
 
     public final NumberPath<Long> number = createNumber("number", Long.class);
 
