@@ -1,1 +1,1 @@
-INSERT INTO ARTICLE (adm,author,content,password,title) values (1, 'asdf','asdf','asdf', 'asdf');
+insert into company (title, language) values ('asdf',false);
