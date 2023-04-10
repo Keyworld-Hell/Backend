@@ -11,8 +11,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Table(indexes = {
         @Index(columnList = "title"),
-        @Index(columnList = "createdAt"),
-        @Index(columnList = "createdBy")
+        @Index(columnList = "createdAt")
 })
 @Entity
 public class Inquiry extends AuditingFields{
