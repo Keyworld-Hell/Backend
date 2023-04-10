@@ -15,11 +15,17 @@ public record ArticleWithCommentsResponse(
         String content,
         String password,
         Boolean adm,
-        Set<ArticleCommentResponse> articleCommentsResponse
+        Set<ArticleCommentResponse> articleCommentsResponse,
+
+        LocalDateTime createdAt,
+
+        LocalDateTime modifiedAt
+
+
 ) {
 
-    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, String password, Boolean adm, Set<ArticleCommentResponse> articleCommentResponses) {
-        return new ArticleWithCommentsResponse(id, author, title, content, password, adm, articleCommentResponses);
+    public static ArticleWithCommentsResponse of(Long id, String author, String title, String content, String password, Boolean adm, Set<ArticleCommentResponse> articleCommentResponses, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        return new ArticleWithCommentsResponse(id, author, title, content, password, adm, articleCommentResponses, createdAt, modifiedAt);
     }
 
     public static ArticleWithCommentsResponse from(ArticleWithCommentsDto dto) {
@@ -31,7 +37,9 @@ public record ArticleWithCommentsResponse(
                 dto.content(),
                 dto.password(),
                 dto.adm(),
-                organizeChildComments(dto.articleCommentDtos())
+                organizeChildComments(dto.articleCommentDtos()),
+                dto.createdAt(),
+                dto.modifiedAt()
         );
     }
 
