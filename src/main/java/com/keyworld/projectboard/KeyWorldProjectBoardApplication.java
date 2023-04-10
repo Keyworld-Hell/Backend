@@ -6,11 +6,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @ConfigurationPropertiesScan
 @SpringBootApplication
+@EnableJpaAuditing
 public class KeyWorldProjectBoardApplication extends SpringBootServletInitializer {
 
     @Override
