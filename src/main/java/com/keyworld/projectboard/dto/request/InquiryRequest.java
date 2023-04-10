@@ -9,7 +9,6 @@ public record InquiryRequest(
         String phone,
         String email,
         String title,
-
         String content
 ){
     public static InquiryRequest of(String name, String phone, String email, String title, String content) { return new InquiryRequest(name, phone, email, title,content);}
