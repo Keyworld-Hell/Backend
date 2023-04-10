@@ -20,7 +20,7 @@ public record ArticleDto(
 ) {
 
     public static ArticleDto of(String author, String title, String content, String password,Boolean adm ) {
-        return new ArticleDto(null, author, title, content, password,adm,  null, null);
+        return new ArticleDto(null, author, title, content, password,adm, LocalDateTime.now(), LocalDateTime.now());
     }
 
     public static ArticleDto of(Long id, String author, String title, String content, String password,Boolean adm,  LocalDateTime createdAt, LocalDateTime modifiedAt) {
