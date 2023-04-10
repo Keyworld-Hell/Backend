@@ -22,20 +22,11 @@ public abstract class AuditingFields {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    @Column(updatable = false)
+    @Column(nullable = false, updatable = false)
     protected LocalDateTime createdAt; // 생성일시
-
-    @CreatedBy
-    @Column(updatable = false, length = 100)
-    protected String createdBy; // 생성자
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
-    @Column
+    @Column(nullable = false)
     protected LocalDateTime modifiedAt; // 수정일시
-
-    @LastModifiedBy
-    @Column(length = 100)
-    protected String modifiedBy; // 수정자
-
 }
