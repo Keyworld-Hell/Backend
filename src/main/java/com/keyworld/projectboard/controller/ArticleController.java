@@ -24,8 +24,6 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleService articleService;
-    private final PaginationService paginationService;
-
     @GetMapping("/board")
     public Page<ArticleResponse> articles(
             @RequestParam(required = false) SearchType searchType,

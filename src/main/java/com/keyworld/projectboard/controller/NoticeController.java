@@ -17,13 +17,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/")
 public class NoticeController {
-
     private final NoticeService noticeService;
-
     public NoticeController(NoticeService noticeService) {
         this.noticeService = noticeService;
     }
-
     @PostMapping("/adm/notice/new")
     public ResponseEntity<Void> createNotice(@ModelAttribute NoticeDTO noticeDto) throws IOException {
         noticeService.createNotice(noticeDto);

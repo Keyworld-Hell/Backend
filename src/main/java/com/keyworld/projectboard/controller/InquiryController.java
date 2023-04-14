@@ -19,8 +19,6 @@ public class InquiryController {
 
     private final InquiryService inquiryService;
 
-    private final PaginationService paginationService;
-
     @GetMapping("/inquiry")
     public Page<InquiryResponse> inquiries(
             @RequestParam(required = false) SearchType searchType,

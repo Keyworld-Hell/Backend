@@ -30,8 +30,6 @@ public class CompanyController {
         return ResponseEntity.ok(certificationDTO);
     }
 
-
-
     @PostMapping("/adm/company/new")
     public ResponseEntity<String> uploadFile(@ModelAttribute CompanyDTO certificationDTO) throws IOException {
 
