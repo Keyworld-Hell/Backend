@@ -42,7 +42,7 @@ public class NoticeService {
 
         if (noticeDto.getFile() != null) {
             String fileName = noticeDto.getFile().getOriginalFilename();
-            String filePath = "/notice" + fileName;
+            String filePath = "/notice/" + fileName;
             notice.setFilePath(filePath);
             fileService.uploadFile(noticeDto.getFile(), filePath);
         }
@@ -89,7 +89,7 @@ public class NoticeService {
 
         if (noticeDto.getFile() != null) {
             String fileName = noticeDto.getFile().getOriginalFilename();
-            String filePath = "/notices/" + fileName;
+            String filePath = "/notice/" + fileName;
             notice.setFilePath(filePath);
             fileService.uploadFile(noticeDto.getFile(), filePath);
         }
