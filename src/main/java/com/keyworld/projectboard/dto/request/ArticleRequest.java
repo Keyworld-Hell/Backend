@@ -1,6 +1,6 @@
 package com.keyworld.projectboard.dto.request;
 
-import com.keyworld.projectboard.dto.ArticleDto;
+import com.keyworld.projectboard.dto.ArticleDTO;
 
 public record ArticleRequest(
         String author,
@@ -17,8 +17,8 @@ public record ArticleRequest(
         return new ArticleRequest(author, title, content, password, adm);
     }
 
-    public ArticleDto toDto() {
-        return ArticleDto.of(
+    public ArticleDTO toDto() {
+        return ArticleDTO.of(
                 author,
                 title,
                 content,

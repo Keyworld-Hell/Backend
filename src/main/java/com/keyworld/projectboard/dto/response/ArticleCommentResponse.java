@@ -1,11 +1,6 @@
 package com.keyworld.projectboard.dto.response;
 
-import com.keyworld.projectboard.dto.ArticleCommentDto;
-
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import com.keyworld.projectboard.dto.ArticleCommentDTO;
 
 public record ArticleCommentResponse(
         Long id,
@@ -18,7 +13,7 @@ public record ArticleCommentResponse(
     }
 
 
-    public static ArticleCommentResponse from(ArticleCommentDto dto) {
+    public static ArticleCommentResponse from(ArticleCommentDTO dto) {
         return ArticleCommentResponse.of(
                 dto.id(),
                 dto.content(),

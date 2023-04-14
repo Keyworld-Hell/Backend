@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public record ArticleWithCommentsDto(
         Long id,
 
-        Set<ArticleCommentDto> articleCommentDtos,
+        Set<ArticleCommentDTO> articleCommentDTOS,
         String author,
         String title,
 
@@ -20,15 +20,15 @@ public record ArticleWithCommentsDto(
         LocalDateTime createdAt,
         LocalDateTime modifiedAt
 ) {
-    public static ArticleWithCommentsDto of(Long id,  Set<ArticleCommentDto> articleCommentDtos, String author, String title, String content, Boolean adm, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        return new ArticleWithCommentsDto(id, articleCommentDtos, author, title, content, adm, password, createdAt, modifiedAt);
+    public static ArticleWithCommentsDto of(Long id, Set<ArticleCommentDTO> articleCommentDTOS, String author, String title, String content, Boolean adm, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        return new ArticleWithCommentsDto(id, articleCommentDTOS, author, title, content, adm, password, createdAt, modifiedAt);
     }
 
     public static ArticleWithCommentsDto from(Article entity) {
         return new ArticleWithCommentsDto(
                 entity.getId(),
                 entity.getArticleComments().stream()
-                        .map(ArticleCommentDto::from)
+                        .map(ArticleCommentDTO::from)
                         .collect(Collectors.toCollection(LinkedHashSet::new))
                 ,
                 entity.getAuthor(),

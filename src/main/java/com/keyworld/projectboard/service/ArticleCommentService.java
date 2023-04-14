@@ -2,7 +2,7 @@ package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Article;
 import com.keyworld.projectboard.domain.ArticleComment;
-import com.keyworld.projectboard.dto.ArticleCommentDto;
+import com.keyworld.projectboard.dto.ArticleCommentDTO;
 import com.keyworld.projectboard.repository.ArticleCommentRepository;
 import com.keyworld.projectboard.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +23,14 @@ public class ArticleCommentService {
     private final ArticleCommentRepository articleCommentRepository;
 
     @Transactional(readOnly = true)
-    public List<ArticleCommentDto> searchArticleComments(Long articleId) {
+    public List<ArticleCommentDTO> searchArticleComments(Long articleId) {
         return articleCommentRepository.findByArticle_Id(articleId)
                 .stream()
-                .map(ArticleCommentDto::from)
+                .map(ArticleCommentDTO::from)
                 .toList();
     }
 
-    public void saveArticleComment(ArticleCommentDto dto) {
+    public void saveArticleComment(ArticleCommentDTO dto) {
         try {
             Article article = articleRepository.getReferenceById(dto.articleId());
             ArticleComment articleComment = dto.toEntity(article);

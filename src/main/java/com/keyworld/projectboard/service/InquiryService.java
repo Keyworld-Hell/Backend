@@ -2,7 +2,7 @@ package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.*;
 import com.keyworld.projectboard.domain.constant.SearchType;
-import com.keyworld.projectboard.dto.InquiryDto;
+import com.keyworld.projectboard.dto.InquiryDTO;
 import com.keyworld.projectboard.repository.InquiryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,33 +22,33 @@ public class InquiryService {
 
 
     @Transactional(readOnly = true)
-    public Page<InquiryDto> searchInquiries(SearchType searchType, String searchKeyword, Pageable pageable){
+    public Page<InquiryDTO> searchInquiries(SearchType searchType, String searchKeyword, Pageable pageable){
         if (searchKeyword == null || searchKeyword.isBlank()) {
-            return inquiryRepository.findAll(pageable).map(InquiryDto::from);
+            return inquiryRepository.findAll(pageable).map(InquiryDTO::from);
         }
         return switch (searchType) {
             case AUTHOR -> null;
-            case TITLE -> inquiryRepository.findByTitleContaining(searchKeyword, pageable).map(InquiryDto::from);
-            case CONTENT -> inquiryRepository.findByContentContaining(searchKeyword, pageable).map(InquiryDto::from);
+            case TITLE -> inquiryRepository.findByTitleContaining(searchKeyword, pageable).map(InquiryDTO::from);
+            case CONTENT -> inquiryRepository.findByContentContaining(searchKeyword, pageable).map(InquiryDTO::from);
 
         };
     }
 
     @Transactional(readOnly = true)
-    public InquiryDto getInquiry(Long inquiryId) {
+    public InquiryDTO getInquiry(Long inquiryId) {
         return inquiryRepository.findById(inquiryId)
-                .map(InquiryDto::from)
+                .map(InquiryDTO::from)
                 .orElseThrow(() -> new EntityNotFoundException("문의가 없습니다 - inquiryId: " + inquiryId));
     }
 
-    public InquiryDto saveInquiry(InquiryDto dto) {
+    public InquiryDTO saveInquiry(InquiryDTO dto) {
         Inquiry inquiry = dto.toEntity();
         inquiryRepository.save(inquiry);
-        return InquiryDto.from(inquiry);
+        return InquiryDTO.from(inquiry);
     }
 
 
-    public InquiryDto updateInquiry(Long inquiryId, InquiryDto dto) {
+    public InquiryDTO updateInquiry(Long inquiryId, InquiryDTO dto) {
         Inquiry inquiry = inquiryRepository.findById(inquiryId)
                 .orElseThrow(() -> new EntityNotFoundException("Inquiry not found - inquiryId: " + inquiryId));
 
@@ -69,7 +69,7 @@ public class InquiryService {
         }
 
         inquiryRepository.save(inquiry);
-        return InquiryDto.from(inquiry);
+        return InquiryDTO.from(inquiry);
     }
 
 

@@ -1,7 +1,6 @@
 package com.keyworld.projectboard.dto.response;
 
-import com.keyworld.projectboard.dto.InquiryDto;
-import com.keyworld.projectboard.repository.InquiryRepository;
+import com.keyworld.projectboard.dto.InquiryDTO;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +17,7 @@ public record InquiryResponse (
         return new InquiryResponse(id, name, phone, email, title, content, createdAt);
     }
 
-    public static InquiryResponse from(InquiryDto dto){
+    public static InquiryResponse from(InquiryDTO dto){
         return new InquiryResponse(
                 dto.id(),
                 dto.name(),

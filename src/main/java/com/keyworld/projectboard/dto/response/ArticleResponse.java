@@ -1,6 +1,6 @@
 package com.keyworld.projectboard.dto.response;
 
-import com.keyworld.projectboard.dto.ArticleDto;
+import com.keyworld.projectboard.dto.ArticleDTO;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +19,7 @@ public record ArticleResponse(
         return new ArticleResponse(id, author, title, content, password, adm, createdAt, modifiedAt);
     }
 
-    public static ArticleResponse from(ArticleDto dto) {
+    public static ArticleResponse from(ArticleDTO dto) {
 
         return new ArticleResponse(
                 dto.id(),

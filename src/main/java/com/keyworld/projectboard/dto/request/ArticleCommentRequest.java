@@ -1,7 +1,6 @@
 package com.keyworld.projectboard.dto.request;
 
-import com.keyworld.projectboard.dto.ArticleCommentDto;
-import com.keyworld.projectboard.dto.ArticleDto;
+import com.keyworld.projectboard.dto.ArticleCommentDTO;
 
 public record ArticleCommentRequest(
         Long articleId,
@@ -14,8 +13,8 @@ public record ArticleCommentRequest(
     }
 
 
-    public ArticleCommentDto toDto() {
-        return ArticleCommentDto.of(
+    public ArticleCommentDTO toDto() {
+        return ArticleCommentDTO.of(
                 articleId,
                 content,
                 admin

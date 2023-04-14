@@ -1,6 +1,6 @@
 package com.keyworld.projectboard.dto.response;
 
-import com.keyworld.projectboard.dto.ArticleCommentDto;
+import com.keyworld.projectboard.dto.ArticleCommentDTO;
 import com.keyworld.projectboard.dto.ArticleWithCommentsDto;
 
 import java.time.LocalDateTime;
@@ -37,14 +37,14 @@ public record ArticleWithCommentsResponse(
                 dto.content(),
                 dto.password(),
                 dto.adm(),
-                organizeChildComments(dto.articleCommentDtos()),
+                organizeChildComments(dto.articleCommentDTOS()),
                 dto.createdAt(),
                 dto.modifiedAt()
         );
     }
 
 
-    private static Set<ArticleCommentResponse> organizeChildComments(Set<ArticleCommentDto> dtos) {
+    private static Set<ArticleCommentResponse> organizeChildComments(Set<ArticleCommentDTO> dtos) {
         Map<Long, ArticleCommentResponse> map = dtos.stream()
                 .map(ArticleCommentResponse::from)
                 .collect(Collectors.toMap(ArticleCommentResponse::id, Function.identity()));

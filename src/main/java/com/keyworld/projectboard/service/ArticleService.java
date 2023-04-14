@@ -2,7 +2,7 @@ package com.keyworld.projectboard.service;
 
 import com.keyworld.projectboard.domain.Article;
 import com.keyworld.projectboard.domain.constant.SearchType;
-import com.keyworld.projectboard.dto.ArticleDto;
+import com.keyworld.projectboard.dto.ArticleDTO;
 import com.keyworld.projectboard.dto.ArticleWithCommentsDto;
 import com.keyworld.projectboard.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +23,15 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     @Transactional(readOnly = true)
-    public Page<ArticleDto> searchArticles(SearchType searchType, String searchKeyword, Pageable pageable) {
+    public Page<ArticleDTO> searchArticles(SearchType searchType, String searchKeyword, Pageable pageable) {
         if (searchKeyword == null || searchKeyword.isBlank()) {
-            return articleRepository.findAll(pageable).map(ArticleDto::from);
+            return articleRepository.findAll(pageable).map(ArticleDTO::from);
         }
 
         return switch (searchType) {
-            case AUTHOR -> articleRepository.findByAuthorContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
+            case AUTHOR -> articleRepository.findByAuthorContaining(searchKeyword, pageable).map(ArticleDTO::from);
+            case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDTO::from);
+            case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDTO::from);
         };
     }
 
@@ -43,19 +43,19 @@ public class ArticleService {
     }
 
     @Transactional(readOnly = true)
-    public ArticleDto getArticle(Long articleId) {
+    public ArticleDTO getArticle(Long articleId) {
         return articleRepository.findById(articleId)
-                .map(ArticleDto::from)
+                .map(ArticleDTO::from)
                 .orElseThrow(() -> new EntityNotFoundException("게시글이 없습니다 - articleId: " + articleId));
     }
 
-    public ArticleDto saveArticle(ArticleDto dto) {
+    public ArticleDTO saveArticle(ArticleDTO dto) {
         Article article = dto.toEntity();
         articleRepository.save(article);
         return dto;
     }
 
-    public ArticleDto updateArticle(Long articleId, ArticleDto dto) {
+    public ArticleDTO updateArticle(Long articleId, ArticleDTO dto) {
         try {
             Article article = articleRepository.getReferenceById(articleId);
             if (dto.author() != null) {

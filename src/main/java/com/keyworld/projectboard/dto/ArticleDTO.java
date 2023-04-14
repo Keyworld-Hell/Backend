@@ -3,10 +3,8 @@ package com.keyworld.projectboard.dto;
 import com.keyworld.projectboard.domain.Article;
 
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-public record ArticleDto(
+public record ArticleDTO(
         Long id,
 
         String author,
@@ -19,16 +17,16 @@ public record ArticleDto(
         LocalDateTime modifiedAt
 ) {
 
-    public static ArticleDto of(String author, String title, String content, String password,Boolean adm ) {
-        return new ArticleDto(null, author, title, content, password,adm, LocalDateTime.now(), LocalDateTime.now());
+    public static ArticleDTO of(String author, String title, String content, String password, Boolean adm ) {
+        return new ArticleDTO(null, author, title, content, password,adm, LocalDateTime.now(), LocalDateTime.now());
     }
 
-    public static ArticleDto of(Long id, String author, String title, String content, String password,Boolean adm,  LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        return new ArticleDto(id, author, title, content, password,adm,  createdAt, modifiedAt);
+    public static ArticleDTO of(Long id, String author, String title, String content, String password, Boolean adm, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        return new ArticleDTO(id, author, title, content, password,adm,  createdAt, modifiedAt);
     }
 
-    public static ArticleDto from(Article entity) {
-        return new ArticleDto(
+    public static ArticleDTO from(Article entity) {
+        return new ArticleDTO(
                 entity.getId(),
                 entity.getAuthor(),
                 entity.getTitle(),
