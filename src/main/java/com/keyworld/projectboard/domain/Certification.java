@@ -30,7 +30,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name="CERTIFICATION")
-public class Certification extends BaseTime {
+public class Certification extends AuditingFields {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
