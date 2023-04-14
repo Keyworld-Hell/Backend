@@ -1,6 +1,4 @@
 package com.keyworld.projectboard.domain;
-
-import com.querydsl.core.types.EntityPath;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

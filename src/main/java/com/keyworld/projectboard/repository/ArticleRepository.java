@@ -1,8 +1,6 @@
 package com.keyworld.projectboard.repository;
 
 import com.keyworld.projectboard.domain.Article;
-import com.querydsl.core.types.dsl.DateTimeExpression;
-import com.querydsl.core.types.dsl.StringExpression;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
