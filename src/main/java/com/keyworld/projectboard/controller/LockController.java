@@ -36,12 +36,12 @@ public class LockController {
         return ResponseEntity.ok("File uploaded successfully");
     }
 
-    @PutMapping("{language}/adm/products/update/{number}/{id}")
+    @PutMapping("/adm/{language}/products/update/{number}/{id}")
     public Locks update(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id, @ModelAttribute LockDTO dto) throws IOException {
         return service.update(language, number, id, dto);
     }
 
-    @DeleteMapping("{language}/adm/products/delete/{number}/{id}")
+    @DeleteMapping("/adm/{language}/products/delete/{number}/{id}")
     public ResponseEntity<Void> delete(@PathVariable Boolean language, @PathVariable Long number, @PathVariable Long id) {
         service.delete(language, number, id);
         return ResponseEntity.noContent().build();
